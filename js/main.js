@@ -74,7 +74,10 @@ document.addEventListener('DOMContentLoaded', () => {
             blogMore: 'Показати більше статей',
             footerDesc: 'Офіційний дистриб\'ютор KSTAR в Україні.<br>Системи накопичення енергії для бізнесу.',
             footerCopy: '&copy; 2025–2026 UKRSTORENERGY. Всі права захищено.',
-            chatStatus: 'AI Енергетичний консультант', chatPlaceholder: 'Ваше питання...'
+            chatStatus: 'AI Енергетичний консультант', chatPlaceholder: 'Ваше питання...',
+            notifyTitle: 'Безкоштовний розрахунок ROI',
+            notifyDesc: 'Дізнайтесь, скільки заощадить ваш бізнес з ESS — за 2 хвилини',
+            notifyCta: 'Розрахувати'
         },
         en: {
             navSolutions: 'Solutions', navCalculator: 'Calculator', navTechnology: 'Technology',
@@ -145,7 +148,10 @@ document.addEventListener('DOMContentLoaded', () => {
             blogMore: 'Show more articles',
             footerDesc: 'Official KSTAR distributor in Ukraine.<br>Energy storage systems for business.',
             footerCopy: '&copy; 2025–2026 UKRSTORENERGY. All rights reserved.',
-            chatStatus: 'AI Energy Consultant', chatPlaceholder: 'Your question...'
+            chatStatus: 'AI Energy Consultant', chatPlaceholder: 'Your question...',
+            notifyTitle: 'Free ROI Calculation',
+            notifyDesc: 'Find out how much your business can save with ESS — in 2 minutes',
+            notifyCta: 'Calculate'
         }
     };
 
@@ -365,6 +371,13 @@ document.addEventListener('DOMContentLoaded', () => {
         chatWidget.classList.toggle('chat-widget--open');
         if (chatWidget.classList.contains('chat-widget--open')) {
             chatInput.focus();
+            const n = document.getElementById('siteNotify');
+            if (n && n.classList.contains('site-notify--visible')) {
+                n.classList.add('site-notify--hiding');
+                n.classList.remove('site-notify--visible');
+                sessionStorage.setItem('use_notify_dismissed', '1');
+                setTimeout(() => n.classList.remove('site-notify--hiding'), 500);
+            }
         }
     });
 
@@ -429,6 +442,38 @@ document.addEventListener('DOMContentLoaded', () => {
     chatInput.addEventListener('keydown', (e) => {
         if (e.key === 'Enter') handleChatSend();
     });
+
+    // ========================================
+    // DELAYED NOTIFICATION
+    // ========================================
+
+    const siteNotify = document.getElementById('siteNotify');
+    const notifyClose = document.getElementById('notifyClose');
+    const notifyCta = document.getElementById('notifyCta');
+    const NOTIFY_DISMISSED_KEY = 'use_notify_dismissed';
+
+    function showNotification() {
+        if (sessionStorage.getItem(NOTIFY_DISMISSED_KEY)) return;
+        if (chatWidget.classList.contains('chat-widget--open')) return;
+        siteNotify.classList.add('site-notify--visible');
+    }
+
+    function hideNotification(permanent) {
+        siteNotify.classList.add('site-notify--hiding');
+        siteNotify.classList.remove('site-notify--visible');
+        if (permanent) sessionStorage.setItem(NOTIFY_DISMISSED_KEY, '1');
+        setTimeout(() => siteNotify.classList.remove('site-notify--hiding'), 500);
+    }
+
+    notifyClose.addEventListener('click', () => hideNotification(true));
+
+    notifyCta.addEventListener('click', () => {
+        hideNotification(true);
+        chatWidget.classList.add('chat-widget--open');
+        chatInput.focus();
+    });
+
+    setTimeout(showNotification, 25000);
 
     // ========================================
     // CONTACT FORM
