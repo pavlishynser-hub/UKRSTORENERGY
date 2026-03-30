@@ -2133,15 +2133,104 @@ img { max-width: 100%; display: block; }
         100% { top: calc(100%); opacity: 0; left: 0; }
     }
 
-    .advantages__grid { grid-template-columns: repeat(2, 1fr); }
+    /* --- ADVANTAGES: compact horizontal cards --- */
+    .advantages__grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        margin-top: 32px;
+    }
+
+    .advantage {
+        display: grid;
+        grid-template-columns: 40px 1fr;
+        grid-template-rows: auto auto;
+        column-gap: 14px;
+        row-gap: 2px;
+        padding: 18px 20px;
+        align-items: start;
+    }
+
+    .advantage:hover {
+        transform: none;
+    }
+
+    .advantage__num {
+        grid-row: 1 / 3;
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: var(--accent);
+        opacity: 0.5;
+        margin-bottom: 0;
+        line-height: 1.4;
+        text-align: center;
+    }
+
+    .advantage h3 {
+        font-size: 0.92rem;
+        margin-bottom: 2px;
+    }
+
+    .advantage p {
+        font-size: 0.82rem;
+        line-height: 1.5;
+    }
+
+    /* --- INTEGRATIONS: horizontal icon + text rows --- */
+    .integrations__grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+        margin-top: 32px;
+    }
+
+    .integration {
+        flex-direction: row;
+        align-items: center;
+        gap: 14px;
+        padding: 14px 18px;
+    }
+
+    .integration:hover {
+        transform: none;
+    }
+
+    .integration svg {
+        width: 28px;
+        height: 28px;
+        flex-shrink: 0;
+    }
+
+    .integration span {
+        font-size: 0.88rem;
+        text-align: left;
+    }
+
+    /* --- AUDIENCE: compact 2-col chip-style --- */
+    .audience__grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+        margin-top: 32px;
+    }
+
+    .audience__item {
+        flex-direction: row;
+        gap: 10px;
+        padding: 14px 14px;
+        text-align: left;
+    }
+
+    .audience__item svg {
+        width: 22px;
+        height: 22px;
+        flex-shrink: 0;
+    }
+
+    .audience__item span {
+        font-size: 0.8rem;
+    }
 
     .equip { grid-template-columns: 1fr; }
 
-    .integrations__grid { grid-template-columns: repeat(2, 1fr); }
-
     .projects__grid { grid-template-columns: 1fr; }
-
-    .audience__grid { grid-template-columns: repeat(3, 1fr); }
 
     .supply__grid { grid-template-columns: 1fr; }
 
@@ -2181,7 +2270,20 @@ img { max-width: 100%; display: block; }
     .calc__options { grid-template-columns: 1fr; }
     .calc__steps { flex-wrap: wrap; }
     .calc__step span { display: none; }
-    .audience__grid { grid-template-columns: repeat(2, 1fr); }
+
+    .advantage { padding: 14px 16px; column-gap: 12px; }
+    .advantage__num { font-size: 1.15rem; }
+    .advantage h3 { font-size: 0.88rem; }
+    .advantage p { font-size: 0.78rem; }
+
+    .integration { padding: 12px 14px; gap: 12px; }
+    .integration svg { width: 24px; height: 24px; }
+    .integration span { font-size: 0.84rem; }
+
+    .audience__grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+    .audience__item { padding: 12px 10px; gap: 8px; }
+    .audience__item svg { width: 20px; height: 20px; }
+    .audience__item span { font-size: 0.76rem; }
 
     .chat-widget { bottom: 16px; right: 16px; }
     .chat-widget__toggle { height: 44px; padding: 0 14px; border-radius: 22px; }
