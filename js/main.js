@@ -252,6 +252,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    const chatHistory = [];
+
     function addMessage(text, isUser) {
         const div = document.createElement('div');
         div.className = `chat-msg chat-msg--${isUser ? 'user' : 'bot'}`;
@@ -260,41 +262,51 @@ document.addEventListener('DOMContentLoaded', () => {
         chatMessages.scrollTop = chatMessages.scrollHeight;
     }
 
-    function getBotResponse(msg) {
-        const lower = msg.toLowerCase();
-
-        if (lower.includes('вартість') || lower.includes('ціна') || lower.includes('коштує') || lower.includes('прайс')) {
-            return 'Вартість системи залежить від потужності та конфігурації. Орієнтовний діапазон: від $40,000 (50 kW) до $2,400,000 (3 MW). Для точного розрахунку залиште заявку або зателефонуйте: +38 (067) 208-55-58.';
-        }
-        if (lower.includes('потужність') || lower.includes('kw') || lower.includes('квт')) {
-            return 'Ми пропонуємо системи від 50 kW до 3 MW. Для підбору оптимальної потужності потрібно знати: ваше середньомісячне споживання, пікове навантаження та задачу (арбітраж, резерв, власні потреби).';
-        }
-        if (lower.includes('окупність') || lower.includes('окупається') || lower.includes('roi')) {
-            return 'Строк окупності зазвичай складає 3–6 років в залежності від сценарію. При арбітражі РДН — найшвидше (2.5–4 роки). Спробуйте наш <a href="#calculator" style="color:var(--accent)">калькулятор</a> для орієнтовного розрахунку.';
-        }
-        if (lower.includes('сес') || lower.includes('сонячн') || lower.includes('solar') || lower.includes('pv')) {
-            return 'ESS ідеально інтегрується з сонячними станціями. Система зберігає надлишкову генерацію СЕС та використовує її вночі або у пікові години, що суттєво підвищує ефективність вашої станції.';
-        }
-        if (lower.includes('гарантія') || lower.includes('цикл')) {
-            return 'Ми надаємо гарантію 10 років на обладнання KSTAR. Ресурс батареї — 6000–8000 циклів, що відповідає 15–20 рокам роботи. Сервісне обслуговування включено.';
-        }
-        if (lower.includes('монтаж') || lower.includes('встановлення') || lower.includes('установка')) {
-            return 'Ми надаємо послугу "під ключ": проектування, доставка, монтаж та пуско-наладка. Строк — 90–120 днів з моменту замовлення (30 днів при наявності на складі).';
-        }
-
-        return 'Дякую за запитання! Для детальної консультації рекомендую звернутися до нашого спеціаліста: +38 (067) 208-55-58 або залиште заявку у <a href="#contacts" style="color:var(--accent)">формі зворотного зв\'язку</a>.';
+    function addTypingIndicator() {
+        const div = document.createElement('div');
+        div.className = 'chat-msg chat-msg--bot chat-msg--typing';
+        div.innerHTML = '<p><span class="typing-dots"><span>.</span><span>.</span><span>.</span></span></p>';
+        chatMessages.appendChild(div);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+        return div;
     }
 
-    function handleChatSend() {
+    async function getAIResponse(msg) {
+        try {
+            const res = await fetch('/api/chat', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ message: msg, history: chatHistory })
+            });
+            const data = await res.json();
+            if (data.reply) return data.reply;
+            return 'Вибачте, сталася помилка. Зателефонуйте нам: +38 (067) 208-55-58';
+        } catch {
+            return 'Вибачте, сервіс тимчасово недоступний. Зв\'яжіться з нами: +38 (067) 208-55-58';
+        }
+    }
+
+    async function handleChatSend() {
         const msg = chatInput.value.trim();
         if (!msg) return;
 
         addMessage(msg, true);
+        chatHistory.push({ role: 'user', content: msg });
         chatInput.value = '';
+        chatInput.disabled = true;
+        chatSend.disabled = true;
 
-        setTimeout(() => {
-            addMessage(getBotResponse(msg), false);
-        }, 600 + Math.random() * 400);
+        const typing = addTypingIndicator();
+
+        const reply = await getAIResponse(msg);
+
+        typing.remove();
+        addMessage(reply, false);
+        chatHistory.push({ role: 'assistant', content: reply });
+
+        chatInput.disabled = false;
+        chatSend.disabled = false;
+        chatInput.focus();
     }
 
     chatSend.addEventListener('click', handleChatSend);
