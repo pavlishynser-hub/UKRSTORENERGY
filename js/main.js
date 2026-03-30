@@ -21,7 +21,9 @@ document.addEventListener('DOMContentLoaded', () => {
             solutionTitle: 'Energy Storage System —<br>рішення для бізнесу',
             solutionDesc: 'Система накопичує дешеву електроенергію та використовує її у години пікового навантаження — це суттєво знижує витрати.',
             solutionLi1: 'Резервне живлення', solutionLi2: 'Стабільність роботи підприємства', solutionLi3: 'Оптимізація споживання електроенергії',
-            usecasesTitle: 'Сценарії використання',
+            usecasesTitle: '5 сценаріїв використання ESS для бізнесу',
+            usecasesSubtitle: 'Натисніть на сценарій, щоб дізнатися принцип роботи, вигоди та варіанти впровадження',
+            ucMore: 'Детальніше',
             uc1h: 'Арбітраж РДН', uc1p: 'Заряд у дешеві години, розряд у пікові — максимальна економія',
             uc2h: 'Трейдинг електроенергії', uc2p: 'Активна торгівля на енергетичному ринку з максимальним прибутком',
             uc3h: 'Власні потреби', uc3p: 'Зниження витрат на електроенергію для власного споживання',
@@ -95,7 +97,9 @@ document.addEventListener('DOMContentLoaded', () => {
             solutionTitle: 'Energy Storage System —<br>solution for business',
             solutionDesc: 'The system stores cheap electricity and uses it during peak hours — significantly reducing costs.',
             solutionLi1: 'Backup power', solutionLi2: 'Business operation stability', solutionLi3: 'Energy consumption optimization',
-            usecasesTitle: 'Use Cases',
+            usecasesTitle: '5 ESS Use Cases for Business',
+            usecasesSubtitle: 'Click on a scenario to learn how it works, its benefits, and implementation options',
+            ucMore: 'Learn more',
             uc1h: 'DAM Arbitrage', uc1p: 'Charge during off-peak, discharge during peak — maximum savings',
             uc2h: 'Energy Trading', uc2p: 'Active trading on the energy market with maximum profit',
             uc3h: 'Own Consumption', uc3p: 'Reducing electricity costs for own consumption',
@@ -193,7 +197,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const heroSection = document.getElementById('hero');
 
     window.addEventListener('scroll', () => {
-        if (!heroSection) return;
+        if (!heroSection || !header) return;
         const heroBottom = heroSection.offsetTop + heroSection.offsetHeight;
         header.classList.toggle('header--visible', window.scrollY > heroBottom - 80);
     });
@@ -233,12 +237,14 @@ document.addEventListener('DOMContentLoaded', () => {
         mobileNavClose.addEventListener('click', closeMobileNav);
     }
 
-    mobileNav.querySelectorAll('.mobile-nav__link').forEach(link => {
-        link.addEventListener('click', closeMobileNav);
-    });
+    if (mobileNav) {
+        mobileNav.querySelectorAll('.mobile-nav__link').forEach(link => {
+            link.addEventListener('click', closeMobileNav);
+        });
 
-    if (mobileNav.querySelector('.mobile-nav__logo')) {
-        mobileNav.querySelector('.mobile-nav__logo').addEventListener('click', closeMobileNav);
+        if (mobileNav.querySelector('.mobile-nav__logo')) {
+            mobileNav.querySelector('.mobile-nav__logo').addEventListener('click', closeMobileNav);
+        }
     }
 
     // ========================================
@@ -259,6 +265,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // CALCULATOR
     // ========================================
 
+    const powerSlider = document.getElementById('powerSlider');
+
+    if (powerSlider) {
     const steps = document.querySelectorAll('.calc__step');
     const panels = document.querySelectorAll('.calc__panel');
     let currentStep = 1;
@@ -281,7 +290,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    const powerSlider = document.getElementById('powerSlider');
     const powerValueEl = document.getElementById('powerValue');
     const systemCostEl = document.getElementById('systemCost');
 
@@ -356,6 +364,7 @@ document.addEventListener('DOMContentLoaded', () => {
             el.style.animation = 'fadeIn 0.5s ease';
         });
     }
+    } // end if (powerSlider)
 
     // ========================================
     // CHAT WIDGET
@@ -367,6 +376,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const chatSend = document.getElementById('chatSend');
     const chatMessages = document.getElementById('chatMessages');
 
+    if (chatToggle) {
     chatToggle.addEventListener('click', () => {
         chatWidget.classList.toggle('chat-widget--open');
         if (chatWidget.classList.contains('chat-widget--open')) {
@@ -474,12 +484,14 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     setTimeout(showNotification, 25000);
+    } // end if (chatToggle)
 
     // ========================================
     // CONTACT FORM
     // ========================================
 
     const form = document.getElementById('contactForm');
+    if (form) {
     form.addEventListener('submit', (e) => {
         e.preventDefault();
         const btn = form.querySelector('.btn');
@@ -495,6 +507,7 @@ document.addEventListener('DOMContentLoaded', () => {
             form.reset();
         }, 3000);
     });
+    } // end if (form)
 
     // ========================================
     // BLOG — SHOW MORE
