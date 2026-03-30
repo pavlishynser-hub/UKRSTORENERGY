@@ -98,6 +98,113 @@ img { max-width: 100%; display: block; }
     flex-shrink: 0;
 }
 
+.burger--header {
+    display: none;
+}
+
+/* Mobile navigation overlay */
+.mobile-nav {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: rgb(9, 9, 17);
+    padding: 0;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.mobile-nav--open {
+    display: flex;
+}
+
+.mobile-nav__close {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    color: rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+    transition: background var(--transition), color var(--transition);
+    z-index: 1;
+}
+
+.mobile-nav__close:hover,
+.mobile-nav__close:active {
+    background: rgba(255, 255, 255, 0.12);
+    color: var(--white);
+}
+
+.mobile-nav__logo {
+    margin-top: 72px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-decoration: none;
+}
+
+.mobile-nav__links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-top: 36px;
+    padding: 0 24px;
+}
+
+.mobile-nav__link {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.65);
+    padding: 16px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    width: 100%;
+    max-width: 280px;
+    text-align: center;
+    letter-spacing: 0.03em;
+    text-decoration: none;
+    transition: color var(--transition);
+}
+
+.mobile-nav__link:last-child {
+    border-bottom: none;
+}
+
+.mobile-nav__link:hover,
+.mobile-nav__link:active {
+    color: var(--accent);
+}
+
+.mobile-nav__lang {
+    margin-top: 32px;
+}
+
+.mobile-nav__contact {
+    margin-top: auto;
+    padding: 24px 0 36px;
+}
+
+.mobile-nav__contact a {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.85rem;
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    transition: color var(--transition);
+}
+
+.mobile-nav__contact a:hover {
+    color: var(--accent);
+}
+
 .logo {
     font-size: 1.2rem;
     font-weight: 700;
@@ -1816,6 +1923,19 @@ img { max-width: 100%; display: block; }
     overflow: hidden;
 }
 
+.blog__card--hidden {
+    display: none;
+}
+
+.blog__more {
+    text-align: center;
+    margin-top: 32px;
+}
+
+.blog__more .btn {
+    min-width: 220px;
+}
+
 .blog__date {
     font-size: 0.75rem;
     color: var(--text-dim);
@@ -1908,40 +2028,9 @@ img { max-width: 100%; display: block; }
 @media (max-width: 768px) {
     .nav { display: none; }
     .burger { display: flex; }
-
-    .hero-nav .nav.nav--open {
-        display: flex;
-        flex-direction: column;
-        position: fixed;
-        inset: 0;
-        background: rgba(9, 9, 17, 0.98);
-        backdrop-filter: blur(24px);
-        -webkit-backdrop-filter: blur(24px);
-        padding: 90px 32px 48px;
-        gap: 0;
-        z-index: 9999;
-        align-items: center;
-        justify-content: flex-start;
-        border: none;
-        width: auto;
-        margin: 0;
-    }
-
-    .hero-nav .nav.nav--open .nav__link {
-        font-size: 1.15rem;
-        font-weight: 500;
-        color: rgba(255, 255, 255, 0.7);
-        padding: 18px 0;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        width: 75%;
-        text-align: center;
-        letter-spacing: 0.02em;
-    }
-
-    .hero-nav .nav.nav--open .nav__link:hover,
-    .hero-nav .nav.nav--open .nav__link:active {
-        color: var(--white);
-    }
+    .burger--header { display: flex; }
+    .header .nav--header { display: none; }
+    .header .lang-switch { display: none; }
 
     .burger--open {
         position: fixed;
@@ -1969,7 +2058,16 @@ img { max-width: 100%; display: block; }
 
     .hero__body {
         padding: clamp(1.25rem, 4vw, 2rem) var(--hero-pad-x);
-        align-items: flex-start;
+        align-items: stretch;
+    }
+
+    .hero__text {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .hero__actions {
+        margin-top: auto;
     }
 
     .hero__overlay--left {

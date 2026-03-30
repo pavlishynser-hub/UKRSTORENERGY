@@ -103,21 +103,43 @@ document.addEventListener('DOMContentLoaded', () => {
     // ========================================
 
     const burger = document.getElementById('burger');
-    const nav = document.getElementById('nav');
+    const burgerHeader = document.getElementById('burgerHeader');
+    const mobileNav = document.getElementById('mobileNav');
+    const mobileNavClose = document.getElementById('mobileNavClose');
 
-    burger.addEventListener('click', () => {
-        burger.classList.toggle('burger--open');
-        nav.classList.toggle('nav--open');
-        document.body.classList.toggle('nav-is-open', nav.classList.contains('nav--open'));
-    });
+    function openMobileNav() {
+        mobileNav.classList.add('mobile-nav--open');
+        document.body.classList.add('nav-is-open');
+    }
 
-    nav.querySelectorAll('.nav__link').forEach(link => {
-        link.addEventListener('click', () => {
-            burger.classList.remove('burger--open');
-            nav.classList.remove('nav--open');
-            document.body.classList.remove('nav-is-open');
+    function closeMobileNav() {
+        mobileNav.classList.remove('mobile-nav--open');
+        document.body.classList.remove('nav-is-open');
+    }
+
+    if (burger) {
+        burger.addEventListener('click', () => {
+            mobileNav.classList.contains('mobile-nav--open') ? closeMobileNav() : openMobileNav();
         });
+    }
+
+    if (burgerHeader) {
+        burgerHeader.addEventListener('click', () => {
+            mobileNav.classList.contains('mobile-nav--open') ? closeMobileNav() : openMobileNav();
+        });
+    }
+
+    if (mobileNavClose) {
+        mobileNavClose.addEventListener('click', closeMobileNav);
+    }
+
+    mobileNav.querySelectorAll('.mobile-nav__link').forEach(link => {
+        link.addEventListener('click', closeMobileNav);
     });
+
+    if (mobileNav.querySelector('.mobile-nav__logo')) {
+        mobileNav.querySelector('.mobile-nav__logo').addEventListener('click', closeMobileNav);
+    }
 
     // ========================================
     // SCROLL ANIMATIONS
@@ -334,6 +356,22 @@ document.addEventListener('DOMContentLoaded', () => {
             form.reset();
         }, 3000);
     });
+
+    // ========================================
+    // BLOG — SHOW MORE
+    // ========================================
+
+    const blogMoreBtn = document.getElementById('blogMore');
+    if (blogMoreBtn) {
+        blogMoreBtn.addEventListener('click', () => {
+            const hidden = document.querySelectorAll('.blog__card--hidden');
+            hidden.forEach(card => {
+                card.classList.remove('blog__card--hidden');
+                observer.observe(card);
+            });
+            blogMoreBtn.parentElement.style.display = 'none';
+        });
+    }
 
     // ========================================
     // ACTIVE NAV ON SCROLL

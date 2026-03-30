@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <rect width="32" height="32" rx="6" fill="#0a0e16"/>
+  <text x="4" y="13" font-family="Arial,sans-serif" font-weight="700" font-size="7.5" fill="#fff" font-style="italic">U</text>
+  <text x="11" y="13" font-family="Arial,sans-serif" font-weight="700" font-size="7.5" fill="#6b7280" font-style="italic">S</text>
+  <text x="17" y="13" font-family="Arial,sans-serif" font-weight="700" font-size="7.5" fill="#fff">E</text>
+  <rect x="4" y="17" width="24" height="3" rx="1.5" fill="#4a9d5b" opacity="0.8"/>
+  <rect x="4" y="22" width="16" height="3" rx="1.5" fill="#4a9d5b" opacity="0.5"/>
+  <rect x="4" y="27" width="8" height="3" rx="1.5" fill="#4a9d5b" opacity="0.3"/>
+</svg>
