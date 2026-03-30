@@ -1,16 +1,101 @@
 document.addEventListener('DOMContentLoaded', () => {
 
     // ========================================
-    // HEADER SCROLL
+    // i18n — LANGUAGE SWITCHER
+    // ========================================
+
+    const translations = {
+        uk: {
+            navSolutions: 'Рішення',
+            navCalculator: 'Калькулятор',
+            navTechnology: 'Технологія',
+            navProjects: 'Проекти',
+            navContacts: 'Контакти',
+            navCta: 'Розрахувати',
+            heroTitle: 'Системи накопичення<br>енергії для бізнесу',
+            heroSubtitle: 'Зниження витрат на електроенергію.<br>Резервне живлення підприємств.',
+            heroBtn1: 'Розрахувати економію',
+            heroBtn2: 'Отримати консультацію',
+            painTitle: 'Чому підприємства втрачають гроші<br>на електроенергії',
+            solutionTitle: 'Energy Storage System —<br>рішення для бізнесу',
+            usecasesTitle: 'Сценарії використання',
+            calcTitle: 'Калькулятор економії',
+            howTitle: 'Як працює система',
+            advantagesTitle: 'Переваги системи',
+            equipTitle: 'Обладнання',
+            integrationsTitle: 'Інтеграції',
+            projectsTitle: 'Реалізовані проекти',
+            audienceTitle: 'Для кого це рішення',
+            supplyTitle: 'Умови постачання',
+            certsTitle: 'Сертифікати',
+            contactsTitle: 'Контакти',
+            formTitle: 'Залишити заявку',
+            formSubmit: 'Надіслати заявку'
+        },
+        en: {
+            navSolutions: 'Solutions',
+            navCalculator: 'Calculator',
+            navTechnology: 'Technology',
+            navProjects: 'Projects',
+            navContacts: 'Contacts',
+            navCta: 'Request Calculation',
+            heroTitle: 'Energy Storage Systems<br>for Business',
+            heroSubtitle: 'Reduce energy costs.<br>Protect your business from outages.',
+            heroBtn1: 'Calculate ROI',
+            heroBtn2: 'Get Consultation',
+            painTitle: 'Why businesses lose money<br>on electricity',
+            solutionTitle: 'Energy Storage System —<br>solution for business',
+            usecasesTitle: 'Use Cases',
+            calcTitle: 'Savings Calculator',
+            howTitle: 'How the system works',
+            advantagesTitle: 'System advantages',
+            equipTitle: 'Equipment',
+            integrationsTitle: 'Integrations',
+            projectsTitle: 'Completed projects',
+            audienceTitle: 'Who is it for',
+            supplyTitle: 'Supply terms',
+            certsTitle: 'Certificates',
+            contactsTitle: 'Contacts',
+            formTitle: 'Submit a request',
+            formSubmit: 'Send request'
+        }
+    };
+
+    let currentLang = 'uk';
+
+    function setLanguage(lang) {
+        currentLang = lang;
+        const t = translations[lang];
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.dataset.i18n;
+            if (t[key]) el.innerHTML = t[key];
+        });
+        document.documentElement.lang = lang === 'uk' ? 'uk' : 'en';
+
+        document.querySelectorAll('.lang-switch__btn').forEach(btn => {
+            btn.classList.toggle('lang-switch__btn--active', btn.dataset.lang === lang);
+        });
+    }
+
+    document.querySelectorAll('.lang-switch').forEach(switcher => {
+        switcher.addEventListener('click', (e) => {
+            const btn = e.target.closest('.lang-switch__btn');
+            if (!btn) return;
+            setLanguage(btn.dataset.lang);
+        });
+    });
+
+    // ========================================
+    // STICKY HEADER — shows after scrolling past hero
     // ========================================
 
     const header = document.getElementById('header');
-    let lastScroll = 0;
+    const heroSection = document.getElementById('hero');
 
     window.addEventListener('scroll', () => {
-        const scrollY = window.scrollY;
-        header.classList.toggle('header--scrolled', scrollY > 50);
-        lastScroll = scrollY;
+        if (!heroSection) return;
+        const heroBottom = heroSection.offsetTop + heroSection.offsetHeight;
+        header.classList.toggle('header--visible', window.scrollY > heroBottom - 80);
     });
 
     // ========================================
@@ -23,12 +108,14 @@ document.addEventListener('DOMContentLoaded', () => {
     burger.addEventListener('click', () => {
         burger.classList.toggle('burger--open');
         nav.classList.toggle('nav--open');
+        document.body.classList.toggle('nav-is-open', nav.classList.contains('nav--open'));
     });
 
     nav.querySelectorAll('.nav__link').forEach(link => {
         link.addEventListener('click', () => {
             burger.classList.remove('burger--open');
             nav.classList.remove('nav--open');
+            document.body.classList.remove('nav-is-open');
         });
     });
 
@@ -72,11 +159,26 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    document.querySelectorAll('input[name="power"]').forEach(r => {
-        r.addEventListener('change', () => {
-            document.getElementById('calcNext2').disabled = false;
-        });
-    });
+    const powerSlider = document.getElementById('powerSlider');
+    const powerValueEl = document.getElementById('powerValue');
+    const systemCostEl = document.getElementById('systemCost');
+
+    function formatPower(kw) {
+        if (kw >= 1000) return (kw / 1000).toFixed(kw % 1000 === 0 ? 0 : 1) + ' МВт';
+        return kw + ' кВт';
+    }
+
+    function updateSlider() {
+        const val = parseInt(powerSlider.value);
+        powerValueEl.textContent = formatPower(val);
+        const cost = val * 400;
+        systemCostEl.textContent = '$' + cost.toLocaleString('en-US').replace(/,/g, ' ');
+        const pct = (val - 3) / (3000 - 3) * 100;
+        powerSlider.style.background = `linear-gradient(90deg, var(--accent) ${pct}%, var(--border) ${pct}%)`;
+    }
+
+    powerSlider.addEventListener('input', updateSlider);
+    updateSlider();
 
     document.getElementById('calcNext1').addEventListener('click', () => showStep(2));
     document.getElementById('calcPrev2').addEventListener('click', () => showStep(1));
@@ -90,7 +192,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function calculateResults() {
         const task = document.querySelector('input[name="task"]:checked')?.value;
-        const power = parseInt(document.querySelector('input[name="power"]:checked')?.value || 0);
+        const power = parseInt(powerSlider.value);
 
         const taskMultipliers = {
             arbitrage: { saving: 4.2, payback: 0.9, roi: 1.15 },

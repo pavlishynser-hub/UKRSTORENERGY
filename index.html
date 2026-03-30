@@ -8,106 +8,96 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css?v=4">
 </head>
 <body>
-
-<!-- HEADER -->
-<header class="header" id="header">
-    <div class="container header__inner">
-        <a href="#" class="logo">
-            <span class="logo__ukr">UKR</span><span class="logo__stor">STOR</span><span class="logo__energy">ENERGY</span>
-        </a>
-        <nav class="nav" id="nav">
-            <a href="#solutions" class="nav__link">Solutions</a>
-            <a href="#calculator" class="nav__link">Calculator</a>
-            <a href="#technology" class="nav__link">Technology</a>
-            <a href="#projects" class="nav__link">Projects</a>
-            <a href="#contacts" class="nav__link">Contacts</a>
-        </nav>
-        <a href="#calculator" class="btn btn--primary header__cta">Request Calculation</a>
-        <button class="burger" id="burger" aria-label="Меню">
-            <span></span><span></span><span></span>
-        </button>
-    </div>
-</header>
 
 <!-- 1. HERO -->
 <section class="hero-page" id="hero">
     <div class="hero">
-        <div class="hero__glow"></div>
-        <div class="hero__content">
-            <div class="hero__main">
-                <div class="hero__text">
-                    <h1 class="hero__title fade-up">Energy Storage<br>Systems for Business</h1>
-                    <p class="hero__subtitle fade-up">Reduce energy costs.<br>Protect your business from outages.</p>
-                    <div class="hero__actions fade-up">
-                        <a href="#calculator" class="btn btn--primary btn--lg">Calculate ROI</a>
-                        <a href="#contacts" class="btn btn--outline btn--lg">Get Consultation</a>
-                    </div>
+        <!-- Nav inside hero container -->
+        <header class="hero-nav" id="heroNav">
+            <a href="#" class="logo">
+                <span class="logo__ukr">UKR</span><span class="logo__stor">STOR</span><span class="logo__energy">ENERGY</span>
+            </a>
+            <nav class="nav" id="nav">
+                <a href="#solutions" class="nav__link" data-i18n="navSolutions">Рішення</a>
+                <a href="#calculator" class="nav__link" data-i18n="navCalculator">Калькулятор</a>
+                <a href="#technology" class="nav__link" data-i18n="navTechnology">Технологія</a>
+                <a href="#projects" class="nav__link" data-i18n="navProjects">Проекти</a>
+                <a href="#contacts" class="nav__link" data-i18n="navContacts">Контакти</a>
+            </nav>
+            <div class="lang-switch" id="langSwitch">
+                <button class="lang-switch__btn lang-switch__btn--active" data-lang="uk">UA</button>
+                <button class="lang-switch__btn" data-lang="en">EN</button>
+            </div>
+            <button class="burger" id="burger" aria-label="Меню">
+                <span></span><span></span><span></span>
+            </button>
+        </header>
+
+        <!-- Background image + overlay layers -->
+        <div class="hero__bg">
+            <img src="images/hero-energy.png" alt="Energy Storage System KSTAR">
+        </div>
+        <div class="hero__overlay hero__overlay--left"></div>
+        <div class="hero__overlay hero__overlay--top"></div>
+        <div class="hero__overlay hero__overlay--bottom"></div>
+
+        <!-- Hero body -->
+        <div class="hero__body">
+            <div class="hero__text">
+                <h1 class="hero__title fade-up" data-i18n="heroTitle">Системи накопичення<br>енергії для бізнесу</h1>
+                <p class="hero__subtitle fade-up" data-i18n="heroSubtitle">Зниження витрат на електроенергію.<br>Резервне живлення підприємств.</p>
+                <div class="hero__actions fade-up">
+                    <a href="#calculator" class="btn btn--accent btn--lg" data-i18n="heroBtn1">Розрахувати економію</a>
+                    <a href="#contacts" class="btn btn--ghost btn--lg" data-i18n="heroBtn2">Отримати консультацію</a>
                 </div>
             </div>
-            <div class="hero__visual fade-up">
-                <svg class="hero__ess-svg" viewBox="0 0 520 340" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <!-- Ground reflection -->
-                    <ellipse cx="260" cy="320" rx="240" ry="12" fill="url(#groundGlow)"/>
-                    <!-- Container body -->
-                    <rect x="30" y="70" width="460" height="210" rx="10" fill="#151a28" stroke="#252d42" stroke-width="1.5"/>
-                    <!-- Panel 1 -->
-                    <rect x="42" y="82" width="138" height="186" rx="5" fill="#0e1320" stroke="#1e2638" stroke-width="1"/>
-                    <!-- Panel 2 -->
-                    <rect x="190" y="82" width="138" height="186" rx="5" fill="#0e1320" stroke="#1e2638" stroke-width="1"/>
-                    <!-- Panel 3 -->
-                    <rect x="340" y="82" width="138" height="186" rx="5" fill="#0e1320" stroke="#1e2638" stroke-width="1"/>
-                    <!-- LEDs -->
-                    <circle cx="68" cy="100" r="3.5" fill="#4a9d5b"><animate attributeName="opacity" values="1;0.3;1" dur="2s" repeatCount="indefinite"/></circle>
-                    <circle cx="216" cy="100" r="3.5" fill="#4a9d5b"><animate attributeName="opacity" values="1;0.3;1" dur="2.4s" repeatCount="indefinite"/></circle>
-                    <circle cx="366" cy="100" r="3.5" fill="#4a9d5b"><animate attributeName="opacity" values="1;0.3;1" dur="1.7s" repeatCount="indefinite"/></circle>
-                    <!-- Display -->
-                    <rect x="222" y="120" width="76" height="48" rx="4" fill="#080c16" stroke="#4a9d5b" stroke-width="0.8" opacity="0.9"/>
-                    <text x="260" y="150" text-anchor="middle" fill="#4a9d5b" font-size="15" font-family="Inter, monospace" font-weight="600">KSTAR</text>
-                    <!-- Vents -->
-                    <circle cx="111" cy="220" r="28" fill="none" stroke="#1e2638" stroke-width="1.2"/>
-                    <circle cx="111" cy="220" r="18" fill="none" stroke="#1e2638" stroke-width="0.8"/>
-                    <circle cx="111" cy="220" r="8" fill="none" stroke="#1e2638" stroke-width="0.5"/>
-                    <circle cx="260" cy="220" r="28" fill="none" stroke="#1e2638" stroke-width="1.2"/>
-                    <circle cx="260" cy="220" r="18" fill="none" stroke="#1e2638" stroke-width="0.8"/>
-                    <circle cx="260" cy="220" r="8" fill="none" stroke="#1e2638" stroke-width="0.5"/>
-                    <circle cx="409" cy="220" r="28" fill="none" stroke="#1e2638" stroke-width="1.2"/>
-                    <circle cx="409" cy="220" r="18" fill="none" stroke="#1e2638" stroke-width="0.8"/>
-                    <circle cx="409" cy="220" r="8" fill="none" stroke="#1e2638" stroke-width="0.5"/>
-                    <!-- Top module -->
-                    <rect x="175" y="38" width="170" height="32" rx="5" fill="#181e2e" stroke="#252d42" stroke-width="1"/>
-                    <text x="260" y="59" text-anchor="middle" fill="#4a5a78" font-size="11" font-family="Inter, sans-serif" font-weight="500">125 kW / 240 kWh</text>
-                    <!-- Bottom glow strip -->
-                    <rect x="60" y="278" width="400" height="3" rx="1.5" fill="#4a9d5b" opacity="0.12"/>
-                    <rect x="120" y="279" width="280" height="1.5" rx="0.75" fill="#4a9d5b" opacity="0.06"/>
-                    <defs>
-                        <radialGradient id="groundGlow" cx="0.5" cy="0.5" r="0.5"><stop offset="0%" stop-color="#4a9d5b" stop-opacity="0.10"/><stop offset="100%" stop-color="#4a9d5b" stop-opacity="0"/></radialGradient>
-                    </defs>
-                </svg>
-            </div>
         </div>
-        <div class="hero__bottom fade-up">
+
+        <!-- Bottom contacts -->
+        <div class="hero__bottom">
             <a href="tel:+380672085558" class="hero__contact">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
                 +38 (067) 208-55-58
             </a>
             <a href="mailto:info@ukrstorenergy.com" class="hero__contact">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
                 info@ukrstorenergy.com
-            </a>
-            <a href="#pain" class="hero__arrow">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
             </a>
         </div>
     </div>
+    <!-- Scroll arrow below container -->
+    <a href="#pain" class="hero-page__scroll">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </a>
 </section>
+
+<!-- Sticky header for scrolling -->
+<header class="header" id="header">
+    <div class="container header__inner">
+        <a href="#hero" class="logo">
+            <span class="logo__ukr">UKR</span><span class="logo__stor">STOR</span><span class="logo__energy">ENERGY</span>
+        </a>
+        <nav class="nav nav--header">
+            <a href="#solutions" class="nav__link" data-i18n="navSolutions">Рішення</a>
+            <a href="#calculator" class="nav__link" data-i18n="navCalculator">Калькулятор</a>
+            <a href="#technology" class="nav__link" data-i18n="navTechnology">Технологія</a>
+            <a href="#projects" class="nav__link" data-i18n="navProjects">Проекти</a>
+            <a href="#contacts" class="nav__link" data-i18n="navContacts">Контакти</a>
+        </nav>
+        <div class="lang-switch" id="langSwitch2">
+            <button class="lang-switch__btn lang-switch__btn--active" data-lang="uk">UA</button>
+            <button class="lang-switch__btn" data-lang="en">EN</button>
+        </div>
+    </div>
+</header>
 
 <!-- 2. PAIN -->
 <section class="section pain" id="pain">
     <div class="container">
-        <h2 class="section__title fade-up">Чому підприємства втрачають гроші<br>на електроенергії</h2>
+        <h2 class="section__title fade-up" data-i18n="painTitle">Чому підприємства втрачають гроші<br>на електроенергії</h2>
         <div class="pain__grid">
             <div class="pain__card fade-up">
                 <div class="pain__icon">
@@ -160,7 +150,7 @@
     <div class="container">
         <div class="solution__inner">
             <div class="solution__text fade-up">
-                <h2 class="section__title section__title--left">Energy Storage System —<br>рішення для бізнесу</h2>
+                <h2 class="section__title section__title--left" data-i18n="solutionTitle">Energy Storage System —<br>рішення для бізнесу</h2>
                 <p class="solution__desc">
                     Система накопичує дешеву електроенергію та використовує її у години пікового навантаження — це суттєво знижує витрати.
                 </p>
@@ -180,10 +170,8 @@
                 </ul>
             </div>
             <div class="solution__visual fade-up">
-                <div class="ess-box">
-                    <div class="ess-box__glow"></div>
-                    <svg width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1"><rect x="1" y="6" width="22" height="12" rx="2"/><line x1="7" y1="6" x2="7" y2="18"/><line x1="13" y1="6" x2="13" y2="18"/><rect x="10" y="3" width="4" height="3" rx="1" fill="var(--accent)" opacity="0.3"/><line x1="12" y1="10" x2="12" y2="14" stroke="var(--accent)" stroke-width="2"/><line x1="10" y1="12" x2="14" y2="12" stroke="var(--accent)" stroke-width="2"/></svg>
-                    <span>ESS KSTAR</span>
+                <div class="solution__image">
+                    <img src="images/IMG_2527.webp" alt="ESS KSTAR — система накопичення енергії">
                 </div>
             </div>
         </div>
@@ -193,7 +181,7 @@
 <!-- 4. USE CASES -->
 <section class="section usecases" id="usecases">
     <div class="container">
-        <h2 class="section__title fade-up">Сценарії використання</h2>
+        <h2 class="section__title fade-up" data-i18n="usecasesTitle">Сценарії використання</h2>
         <div class="usecases__grid">
             <div class="usecase fade-up">
                 <div class="usecase__icon">
@@ -237,7 +225,7 @@
 <!-- 5. CALCULATOR -->
 <section class="section calculator" id="calculator">
     <div class="container">
-        <h2 class="section__title fade-up">Калькулятор економії</h2>
+        <h2 class="section__title fade-up" data-i18n="calcTitle">Калькулятор економії</h2>
         <p class="section__subtitle fade-up">Дізнайтесь, скільки ваше підприємство може зекономити з ESS</p>
         <div class="calc fade-up">
             <div class="calc__steps">
@@ -301,47 +289,26 @@
 
                 <!-- Step 2 -->
                 <div class="calc__panel" id="calcStep2">
-                    <h3>Оберіть потужність системи</h3>
-                    <div class="calc__options calc__options--power">
-                        <label class="calc__option">
-                            <input type="radio" name="power" value="50">
-                            <span class="calc__option-box calc__option-box--power">
-                                <strong>50 kW</strong>
-                                <small>96 kWh</small>
-                            </span>
-                        </label>
-                        <label class="calc__option">
-                            <input type="radio" name="power" value="100">
-                            <span class="calc__option-box calc__option-box--power">
-                                <strong>100 kW</strong>
-                                <small>192 kWh</small>
-                            </span>
-                        </label>
-                        <label class="calc__option">
-                            <input type="radio" name="power" value="250">
-                            <span class="calc__option-box calc__option-box--power">
-                                <strong>250 kW</strong>
-                                <small>480 kWh</small>
-                            </span>
-                        </label>
-                        <label class="calc__option">
-                            <input type="radio" name="power" value="1000">
-                            <span class="calc__option-box calc__option-box--power">
-                                <strong>1 MW</strong>
-                                <small>1920 kWh</small>
-                            </span>
-                        </label>
-                        <label class="calc__option">
-                            <input type="radio" name="power" value="3000">
-                            <span class="calc__option-box calc__option-box--power">
-                                <strong>3 MW</strong>
-                                <small>5760 kWh</small>
-                            </span>
-                        </label>
+                    <h3>Потужність системи</h3>
+                    <div class="calc__slider-block">
+                        <div class="calc__slider-header">
+                            <span class="calc__power-value" id="powerValue">75 кВт</span>
+                            <span class="calc__system-cost">Вартість системи: <strong id="systemCost">$30 000</strong></span>
+                        </div>
+                        <div class="calc__slider-wrap">
+                            <input type="range" id="powerSlider" class="calc__slider" min="3" max="3000" value="75" step="1">
+                        </div>
+                        <div class="calc__slider-labels">
+                            <span>3 кВт</span>
+                            <span>50 кВт</span>
+                            <span>500 кВт</span>
+                            <span>1 МВт</span>
+                            <span>3 МВт</span>
+                        </div>
                     </div>
                     <div class="calc__nav">
                         <button class="btn btn--outline calc__prev" id="calcPrev2">Назад</button>
-                        <button class="btn btn--primary calc__next" id="calcNext2" disabled>Розрахувати</button>
+                        <button class="btn btn--primary calc__next" id="calcNext2">Розрахувати</button>
                     </div>
                 </div>
 
@@ -376,7 +343,7 @@
 <!-- 6. HOW IT WORKS -->
 <section class="section howworks" id="technology">
     <div class="container">
-        <h2 class="section__title fade-up">Як працює система</h2>
+        <h2 class="section__title fade-up" data-i18n="howTitle">Як працює система</h2>
         <p class="section__subtitle fade-up">Система накопичує електроенергію та використовує її в потрібний момент</p>
         <div class="schema fade-up" id="schema">
             <div class="schema__node schema__node--grid" data-tooltip="Електромережа">
@@ -420,7 +387,7 @@
 <!-- 7. ADVANTAGES -->
 <section class="section advantages">
     <div class="container">
-        <h2 class="section__title fade-up">Переваги системи</h2>
+        <h2 class="section__title fade-up" data-i18n="advantagesTitle">Переваги системи</h2>
         <div class="advantages__grid">
             <div class="advantage fade-up">
                 <div class="advantage__num">01</div>
@@ -454,13 +421,11 @@
 <!-- 8. EQUIPMENT -->
 <section class="section equipment" id="equipment">
     <div class="container">
-        <h2 class="section__title fade-up">Обладнання</h2>
+        <h2 class="section__title fade-up" data-i18n="equipTitle">Обладнання</h2>
         <div class="equip fade-up">
             <div class="equip__visual">
                 <div class="equip__image">
-                    <div class="equip__placeholder">
-                        <svg width="100" height="100" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="0.8"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="8" y1="4" x2="8" y2="20"/><line x1="16" y1="4" x2="16" y2="20"/><text x="12" y="14" text-anchor="middle" fill="var(--accent)" stroke="none" font-size="3" font-weight="600">KSTAR</text></svg>
-                    </div>
+                    <img src="images/IMG_2527.webp" alt="KSTAR ESS — система накопичення енергії">
                     <div class="equip__badge">KSTAR ESS</div>
                 </div>
             </div>
@@ -501,7 +466,7 @@
 <!-- 9. INTEGRATIONS -->
 <section class="section integrations">
     <div class="container">
-        <h2 class="section__title fade-up">Інтеграції</h2>
+        <h2 class="section__title fade-up" data-i18n="integrationsTitle">Інтеграції</h2>
         <p class="section__subtitle fade-up">Система працює з різними джерелами генерації</p>
         <div class="integrations__grid">
             <div class="integration fade-up">
@@ -531,7 +496,7 @@
 <!-- 10. PROJECTS -->
 <section class="section projects" id="projects">
     <div class="container">
-        <h2 class="section__title fade-up">Реалізовані проекти</h2>
+        <h2 class="section__title fade-up" data-i18n="projectsTitle">Реалізовані проекти</h2>
         <div class="projects__grid">
             <div class="project fade-up">
                 <div class="project__image">
@@ -576,7 +541,7 @@
 <!-- 11. TARGET AUDIENCE -->
 <section class="section audience">
     <div class="container">
-        <h2 class="section__title fade-up">Для кого це рішення</h2>
+        <h2 class="section__title fade-up" data-i18n="audienceTitle">Для кого це рішення</h2>
         <div class="audience__grid">
             <div class="audience__item fade-up">
                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
@@ -613,7 +578,7 @@
 <!-- 12. SUPPLY -->
 <section class="section supply">
     <div class="container">
-        <h2 class="section__title fade-up">Умови постачання</h2>
+        <h2 class="section__title fade-up" data-i18n="supplyTitle">Умови постачання</h2>
         <div class="supply__grid">
             <div class="supply__card fade-up">
                 <div class="supply__icon">
@@ -664,7 +629,7 @@
 <!-- 13. CERTIFICATES -->
 <section class="section certificates">
     <div class="container">
-        <h2 class="section__title fade-up">Сертифікати</h2>
+        <h2 class="section__title fade-up" data-i18n="certsTitle">Сертифікати</h2>
         <div class="certs__grid">
             <div class="cert fade-up">
                 <div class="cert__icon">
@@ -694,8 +659,9 @@
 <!-- 14. AI CONSULTANT -->
 <div class="chat-widget" id="chatWidget">
     <button class="chat-widget__toggle" id="chatToggle" aria-label="AI Консультант">
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="chat-widget__icon-open"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="chat-widget__icon-close"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        <span class="chat-widget__label">AI</span>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="chat-widget__icon-open"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="chat-widget__icon-close"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
     </button>
     <div class="chat-widget__window" id="chatWindow">
         <div class="chat-widget__header">
@@ -728,7 +694,7 @@
 <!-- 15. CONTACTS -->
 <section class="section contacts" id="contacts">
     <div class="container">
-        <h2 class="section__title fade-up">Контакти</h2>
+        <h2 class="section__title fade-up" data-i18n="contactsTitle">Контакти</h2>
         <div class="contacts__inner">
             <div class="contacts__info fade-up">
                 <div class="contacts__item">
@@ -754,7 +720,7 @@
                 </div>
             </div>
             <form class="contacts__form fade-up" id="contactForm">
-                <h3>Залишити заявку</h3>
+                <h3 data-i18n="formTitle">Залишити заявку</h3>
                 <input type="text" name="name" placeholder="Ваше ім'я" required>
                 <input type="tel" name="phone" placeholder="Телефон" required>
                 <input type="email" name="email" placeholder="Email">
@@ -766,8 +732,91 @@
                     <option value="project">Проект під ключ</option>
                 </select>
                 <textarea name="message" placeholder="Повідомлення (необов'язково)" rows="3"></textarea>
-                <button type="submit" class="btn btn--primary btn--full">Надіслати заявку</button>
+                <button type="submit" class="btn btn--primary btn--full" data-i18n="formSubmit">Надіслати заявку</button>
             </form>
+        </div>
+    </div>
+</section>
+
+<!-- BLOG -->
+<section class="section blog" id="blog">
+    <div class="container">
+        <h2 class="section__title fade-up">Блог</h2>
+        <p class="section__subtitle fade-up">Корисні матеріали про енергозбереження, ESS-технології та оптимізацію витрат</p>
+        <div class="blog__grid">
+
+            <article class="blog__card fade-up">
+                <div class="blog__card-img">
+                    <svg viewBox="0 0 400 200" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="200" fill="#111820"/><rect x="120" y="60" width="160" height="80" rx="4" fill="#1a2030" stroke="#4a9d5b" stroke-width="1"/><text x="200" y="105" text-anchor="middle" fill="#4a9d5b" font-size="14" font-family="Inter">ESS</text><circle cx="80" cy="100" r="20" fill="#1a2030" stroke="#c4883a" stroke-width="1"/><text x="80" y="105" text-anchor="middle" fill="#c4883a" font-size="10" font-family="Inter">Grid</text><line x1="100" y1="100" x2="118" y2="100" stroke="#4a9d5b" stroke-width="1.5" stroke-dasharray="4 3"/></svg>
+                </div>
+                <div class="blog__card-body">
+                    <span class="blog__tag">Технологія</span>
+                    <h3>Що таке ESS і як системи накопичення енергії працюють для бізнесу</h3>
+                    <p>Energy Storage System (ESS) — це промислова система, що зберігає електроенергію в літій-залізо-фосфатних акумуляторах (LFP). Система заряджається в години дешевої електроенергії та розряджається під час пікових навантажень, забезпечуючи економію до 40% витрат на електроенергію. Технологія KSTAR використовує BMS та EMS для автоматичного управління 10+ сценаріями роботи.</p>
+                    <span class="blog__date">15 березня 2026</span>
+                </div>
+            </article>
+
+            <article class="blog__card fade-up">
+                <div class="blog__card-img">
+                    <svg viewBox="0 0 400 200" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="200" fill="#111820"/><rect x="40" y="150" width="40" height="30" fill="#4a9d5b" opacity="0.3"/><rect x="90" y="120" width="40" height="60" fill="#4a9d5b" opacity="0.5"/><rect x="140" y="90" width="40" height="90" fill="#4a9d5b" opacity="0.6"/><rect x="190" y="60" width="40" height="120" fill="#4a9d5b" opacity="0.7"/><rect x="240" y="70" width="40" height="110" fill="#c4883a" opacity="0.5"/><rect x="290" y="100" width="40" height="80" fill="#c4883a" opacity="0.4"/><text x="200" y="40" text-anchor="middle" fill="#fff" font-size="12" font-family="Inter" opacity="0.6">ROI</text></svg>
+                </div>
+                <div class="blog__card-body">
+                    <span class="blog__tag">Економіка</span>
+                    <h3>Окупність ESS в Україні у 2026 році: реальні цифри та розрахунки</h3>
+                    <p>За даними ринку РДН за жовтень 2025 — березень 2026, середня маржа арбітражу складає 6.97 грн/кВт·год. При потужності системи 125 кВт та 240 кВт·год місячна економія становить $2 000–3 500. Строк окупності ESS для промислового підприємства — 4–6 років з річним ROI 18–25%. Державні програми компенсації додатково скорочують період повернення інвестицій.</p>
+                    <span class="blog__date">10 березня 2026</span>
+                </div>
+            </article>
+
+            <article class="blog__card fade-up">
+                <div class="blog__card-img">
+                    <svg viewBox="0 0 400 200" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="200" fill="#111820"/><circle cx="120" cy="100" r="35" fill="none" stroke="#c4883a" stroke-width="1.5"/><text x="120" y="105" text-anchor="middle" fill="#c4883a" font-size="11" font-family="Inter">СЕС</text><rect x="220" y="70" width="80" height="60" rx="4" fill="#1a2030" stroke="#4a9d5b" stroke-width="1"/><text x="260" y="105" text-anchor="middle" fill="#4a9d5b" font-size="11" font-family="Inter">ESS</text><line x1="155" y1="100" x2="218" y2="100" stroke="#4a9d5b" stroke-width="1.5" stroke-dasharray="4 3"/><path d="M200 100l-8-4v8z" fill="#4a9d5b"/></svg>
+                </div>
+                <div class="blog__card-body">
+                    <span class="blog__tag">Інтеграція</span>
+                    <h3>Інтеграція ESS з сонячними електростанціями: максимум ефективності</h3>
+                    <p>Поєднання системи накопичення енергії з СЕС дозволяє зберігати надлишкову сонячну генерацію та використовувати її ввечері або в хмарну погоду. Гібридна конфігурація On-Grid/Off-Grid від KSTAR підтримує автоматичне переключення між режимами. Для підприємств з власною СЕС це означає зменшення залежності від зовнішньої мережі на 60–80% та повну автономність у разі відключень.</p>
+                    <span class="blog__date">5 березня 2026</span>
+                </div>
+            </article>
+
+            <article class="blog__card fade-up">
+                <div class="blog__card-img">
+                    <svg viewBox="0 0 400 200" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="200" fill="#111820"/><polygon points="200,30 240,80 220,80 250,130 210,130 230,180 170,110 200,110 175,70 195,70" fill="#c4883a" opacity="0.6"/><text x="200" y="195" text-anchor="middle" fill="#fff" font-size="10" font-family="Inter" opacity="0.5">Захист від відключень</text></svg>
+                </div>
+                <div class="blog__card-body">
+                    <span class="blog__tag">Резервне живлення</span>
+                    <h3>ESS як джерело безперебійного живлення: захист бізнесу від блекаутів</h3>
+                    <p>Відключення електроенергії в Україні залишаються серйозною загрозою для виробництва. ESS забезпечує миттєве переключення на батарею (менше 20 мс), що дозволяє критичному обладнанню працювати без зупинок. Система KSTAR 125 кВт / 240 кВт·год забезпечує автономну роботу підприємства протягом 2–4 годин залежно від навантаження. Це в 3 рази дешевше за дизельний генератор у перерахунку на кВт·год.</p>
+                    <span class="blog__date">28 лютого 2026</span>
+                </div>
+            </article>
+
+            <article class="blog__card fade-up">
+                <div class="blog__card-img">
+                    <svg viewBox="0 0 400 200" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="200" fill="#111820"/><rect x="60" y="60" width="120" height="80" rx="4" fill="#1a2030" stroke="#4a9d5b" stroke-width="1"/><text x="120" y="95" text-anchor="middle" fill="#4a9d5b" font-size="9" font-family="Inter">125 kW</text><text x="120" y="115" text-anchor="middle" fill="#4a9d5b" font-size="9" font-family="Inter">240 kWh</text><text x="120" y="55" text-anchor="middle" fill="#fff" font-size="10" font-family="Inter" opacity="0.5">KSTAR</text><rect x="220" y="60" width="120" height="80" rx="4" fill="#1a2030" stroke="#c4883a" stroke-width="1"/><text x="280" y="95" text-anchor="middle" fill="#c4883a" font-size="9" font-family="Inter">250 kW</text><text x="280" y="115" text-anchor="middle" fill="#c4883a" font-size="9" font-family="Inter">480 kWh</text><text x="280" y="55" text-anchor="middle" fill="#fff" font-size="10" font-family="Inter" opacity="0.5">Масштаб</text><line x1="182" y1="100" x2="218" y2="100" stroke="#fff" stroke-width="1" stroke-dasharray="3 3" opacity="0.3"/></svg>
+                </div>
+                <div class="blog__card-body">
+                    <span class="blog__tag">Обладнання</span>
+                    <h3>Огляд обладнання KSTAR ESS: характеристики, переваги та сертифікація</h3>
+                    <p>KSTAR — один з провідних виробників промислових систем накопичення енергії. Основна модель ESS 125 кВт / 240 кВт·год оснащена інвертором з ККД 98.5%, LFP-батареями з ресурсом 6000–8000 циклів, захистом IP54 та інтелектуальними системами BMS/EMS. Обладнання сертифіковане за європейськими стандартами IEC 62619 та має офіційну гарантію 10 років від дистриб'ютора в Україні.</p>
+                    <span class="blog__date">20 лютого 2026</span>
+                </div>
+            </article>
+
+            <article class="blog__card fade-up">
+                <div class="blog__card-img">
+                    <svg viewBox="0 0 400 200" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="200" fill="#111820"/><polyline points="40,150 80,130 120,140 160,100 200,110 240,70 280,80 320,50 360,40" fill="none" stroke="#4a9d5b" stroke-width="2"/><polyline points="40,160 80,155 120,150 160,140 200,130 240,125 280,110 320,100 360,85" fill="none" stroke="#c4883a" stroke-width="1.5" stroke-dasharray="4 3"/><text x="200" y="190" text-anchor="middle" fill="#fff" font-size="10" font-family="Inter" opacity="0.5">Арбітраж РДН 2025-2026</text></svg>
+                </div>
+                <div class="blog__card-body">
+                    <span class="blog__tag">Ринок</span>
+                    <h3>Арбітраж РДН в Україні: як заробляти на різниці тарифів електроенергії</h3>
+                    <p>Ринок «на добу наперед» (РДН) в Україні створює можливість для ESS-арбітражу: закупівля електроенергії вночі за 1.5–2.5 грн/кВт·год та продаж у пікові години за 5–9 грн/кВт·год. Маржа 6.97 грн/кВт·год (дані жовтень 2025 — березень 2026) дозволяє системі 125 кВт генерувати стабільний дохід. Трейдинг на енергоринку стає новим напрямком монетизації для власників ESS.</p>
+                    <span class="blog__date">12 лютого 2026</span>
+                </div>
+            </article>
+
         </div>
     </div>
 </section>
@@ -786,6 +835,7 @@
             <a href="#calculator">Калькулятор</a>
             <a href="#technology">Технологія</a>
             <a href="#projects">Проекти</a>
+            <a href="#blog">Блог</a>
             <a href="#contacts">Контакти</a>
         </div>
         <div class="footer__contacts">
@@ -800,6 +850,6 @@
     </div>
 </footer>
 
-<script src="js/main.js"></script>
+<script src="js/main.js?v=4"></script>
 </body>
 </html>
