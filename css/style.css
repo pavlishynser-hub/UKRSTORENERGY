@@ -2102,7 +2102,7 @@ img { max-width: 100%; display: block; }
     .hero__text {
         display: flex;
         flex-direction: column;
-        padding-top: 0;
+        padding-top: 36px;
         gap: 0;
     }
 
