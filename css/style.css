@@ -1350,15 +1350,15 @@ img { max-width: 100%; display: block; }
 .equip__zone--inv {
     left: 69.8%;
     top: 19%;
-    width: 16.2%;
-    height: 53.5%;
+    width: 14.8%;
+    height: 48.5%;
 }
 
 .equip__zone--bat {
-    left: 13.5%;
-    top: 2.5%;
-    width: 56.5%;
-    height: 96.5%;
+    left: 14.9%;
+    top: 5.2%;
+    width: 54.3%;
+    height: 93.8%;
 }
 
 .equip__zone--active {
