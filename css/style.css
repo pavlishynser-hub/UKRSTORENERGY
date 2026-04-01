@@ -1384,7 +1384,7 @@ img { max-width: 100%; display: block; }
 
 .equip__zone-label {
     position: absolute;
-    top: -12px;
+    top: -32px;
     left: 50%;
     transform: translateX(-50%);
     z-index: 3;
