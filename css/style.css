@@ -1326,17 +1326,19 @@ img { max-width: 100%; display: block; }
 }
 
 .equip__zone--inv {
-    top: 4%;
-    left: 5%;
-    width: 42%;
-    height: 55%;
+    top: 0;
+    right: 0;
+    width: 25%;
+    height: 100%;
+    border-radius: 0 12px 12px 0;
 }
 
 .equip__zone--bat {
-    bottom: 4%;
-    right: 5%;
-    width: 50%;
-    height: 50%;
+    top: 0;
+    left: 0;
+    width: 75%;
+    height: 100%;
+    border-radius: 12px 0 0 12px;
 }
 
 .equip__zone--active {
