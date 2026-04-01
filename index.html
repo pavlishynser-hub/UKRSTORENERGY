@@ -723,27 +723,55 @@
 <section class="section equipment" id="equipment">
     <div class="container">
         <h2 class="section__title fade-up" data-i18n="equipTitle">Обладнання</h2>
+        <p class="section__subtitle fade-up" data-i18n="equipSubtitle">Оберіть конфігурацію інвертора та батареї</p>
+
+        <!-- Configurator selectors -->
+        <div class="equip-config fade-up">
+            <div class="equip-config__group">
+                <span class="equip-config__label" data-i18n="equipInvLabel">Інвертор</span>
+                <div class="equip-config__options" id="inverterOptions">
+                    <button class="equip-config__btn equip-config__btn--active" data-inv="50">50 kW</button>
+                    <button class="equip-config__btn" data-inv="100">100 kW</button>
+                    <button class="equip-config__btn" data-inv="125">125 kW</button>
+                    <button class="equip-config__btn" data-inv="150">150 kW</button>
+                    <button class="equip-config__btn" data-inv="250">250 kW</button>
+                </div>
+            </div>
+            <div class="equip-config__group">
+                <span class="equip-config__label" data-i18n="equipBatLabel">Батарея</span>
+                <div class="equip-config__options" id="batteryOptions">
+                    <button class="equip-config__btn equip-config__btn--active" data-bat="220">220 kWh</button>
+                    <button class="equip-config__btn" data-bat="240">240 kWh</button>
+                    <button class="equip-config__btn" data-bat="260">260 kWh</button>
+                </div>
+            </div>
+        </div>
+
         <div class="equip fade-up">
             <div class="equip__visual">
                 <div class="equip__image">
-                    <img src="images/IMG_2527.webp" alt="Обладнання KSTAR ESS 125 кВт — промислова акумуляторна станція" loading="lazy" width="800" height="600">
+                    <img src="images/IMG_2527.webp" alt="Обладнання KSTAR ESS — промислова акумуляторна станція" loading="lazy" width="800" height="600">
                     <div class="equip__badge">KSTAR ESS</div>
                 </div>
             </div>
             <div class="equip__info">
-                <h3>ESS KSTAR — 125kW / 240kWh</h3>
+                <h3 id="equipModelName">ESS KSTAR — 50kW / 220kWh</h3>
                 <div class="equip__specs">
                     <div class="equip__spec">
                         <span class="equip__spec-label" data-i18n="equipSpecInverter">Інвертор</span>
-                        <span class="equip__spec-value">125 kW</span>
+                        <span class="equip__spec-value" id="specInverter">50 kW</span>
                     </div>
                     <div class="equip__spec">
                         <span class="equip__spec-label" data-i18n="equipSpecCapacity">Ємність батареї</span>
-                        <span class="equip__spec-value">241 kWh</span>
+                        <span class="equip__spec-value" id="specCapacity">220 kWh</span>
                     </div>
                     <div class="equip__spec">
                         <span class="equip__spec-label" data-i18n="equipSpecProtection">Захист</span>
-                        <span class="equip__spec-value">IP64</span>
+                        <span class="equip__spec-value">IP54</span>
+                    </div>
+                    <div class="equip__spec">
+                        <span class="equip__spec-label" data-i18n="equipSpecEfficiency">ККД інвертора</span>
+                        <span class="equip__spec-value" id="specEfficiency">≥ 98.0%</span>
                     </div>
                     <div class="equip__spec">
                         <span class="equip__spec-label" data-i18n="equipSpecCycles">Цикли</span>
@@ -756,6 +784,10 @@
                     <div class="equip__spec">
                         <span class="equip__spec-label" data-i18n="equipSpecBattery">Тип батареї</span>
                         <span class="equip__spec-value">LFP (LiFePO₄)</span>
+                    </div>
+                    <div class="equip__spec">
+                        <span class="equip__spec-label" data-i18n="equipSpecPrice">Орієнтовна вартість</span>
+                        <span class="equip__spec-value equip__spec-value--accent" id="specPrice">~$44 000</span>
                     </div>
                 </div>
                 <a href="#contacts" class="btn btn--primary" data-i18n="equipBtn">Запросити специфікацію</a>

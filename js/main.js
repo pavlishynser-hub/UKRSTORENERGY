@@ -46,10 +46,12 @@ document.addEventListener('DOMContentLoaded', () => {
             adv3h: 'EMS / BMS', adv3p: '10+ сценаріїв роботи для оптимального управління енергією',
             adv4h: 'On-Grid / Off-Grid', adv4p: 'Повна автономність або робота паралельно з мережею',
             adv5h: 'Масштабованість', adv5p: 'Можливість додавання нових модулів при зростанні потреб',
-            equipTitle: 'Обладнання',
+            equipTitle: 'Обладнання', equipSubtitle: 'Оберіть конфігурацію інвертора та батареї',
+            equipInvLabel: 'Інвертор', equipBatLabel: 'Батарея',
             equipSpecInverter: 'Інвертор', equipSpecCapacity: 'Ємність батареї', equipSpecProtection: 'Захист',
+            equipSpecEfficiency: 'ККД інвертора',
             equipSpecCycles: 'Цикли', equipSpecWarranty: 'Гарантія', equipSpecWarrantyVal: '10 років',
-            equipSpecBattery: 'Тип батареї', equipBtn: 'Запросити специфікацію',
+            equipSpecBattery: 'Тип батареї', equipSpecPrice: 'Орієнтовна вартість', equipBtn: 'Запросити специфікацію',
             integrationsTitle: 'Інтеграції', intSubtitle: 'Система працює з різними джерелами генерації',
             int1: 'Сонячні станції', int2: 'Вітрова генерація', int3: 'Газова генерація', int4: 'Гідро', int5: 'Дизель генератори',
             projectsTitle: 'Реалізовані проекти',
@@ -122,10 +124,12 @@ document.addEventListener('DOMContentLoaded', () => {
             adv3h: 'EMS / BMS', adv3p: '10+ operating scenarios for optimal energy management',
             adv4h: 'On-Grid / Off-Grid', adv4p: 'Full autonomy or parallel operation with the grid',
             adv5h: 'Scalability', adv5p: 'Ability to add new modules as needs grow',
-            equipTitle: 'Equipment',
+            equipTitle: 'Equipment', equipSubtitle: 'Choose inverter and battery configuration',
+            equipInvLabel: 'Inverter', equipBatLabel: 'Battery',
             equipSpecInverter: 'Inverter', equipSpecCapacity: 'Battery capacity', equipSpecProtection: 'Protection',
+            equipSpecEfficiency: 'Inverter efficiency',
             equipSpecCycles: 'Cycles', equipSpecWarranty: 'Warranty', equipSpecWarrantyVal: '10 years',
-            equipSpecBattery: 'Battery type', equipBtn: 'Request specification',
+            equipSpecBattery: 'Battery type', equipSpecPrice: 'Estimated cost', equipBtn: 'Request specification',
             integrationsTitle: 'Integrations', intSubtitle: 'The system works with various generation sources',
             int1: 'Solar plants', int2: 'Wind generation', int3: 'Gas generation', int4: 'Hydro', int5: 'Diesel generators',
             projectsTitle: 'Completed projects',
@@ -260,6 +264,81 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 
     document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+    // ========================================
+    // EQUIPMENT CONFIGURATOR
+    // ========================================
+
+    const inverterOptions = document.getElementById('inverterOptions');
+    const batteryOptions = document.getElementById('batteryOptions');
+
+    if (inverterOptions && batteryOptions) {
+        let selectedInv = 50;
+        let selectedBat = 220;
+
+        const inverterData = {
+            50:  { efficiency: '≥ 98.0%', pricePerKwh: 200 },
+            100: { efficiency: '≥ 98.2%', pricePerKwh: 190 },
+            125: { efficiency: '≥ 98.5%', pricePerKwh: 185 },
+            150: { efficiency: '≥ 98.5%', pricePerKwh: 180 },
+            250: { efficiency: '≥ 98.8%', pricePerKwh: 170 }
+        };
+
+        function updateEquipSpecs() {
+            const inv = inverterData[selectedInv];
+            const totalPrice = selectedBat * inv.pricePerKwh;
+            const priceStr = totalPrice >= 1000
+                ? '~$' + Math.round(totalPrice / 1000) + ' ' + String(totalPrice % 1000).padStart(3, '0').replace(/0+$/, '').replace(/^$/, '000')
+                : '~$' + totalPrice;
+            const formattedPrice = '~$' + totalPrice.toLocaleString('en-US').replace(/,/g, ' ');
+
+            const modelEl = document.getElementById('equipModelName');
+            const invEl = document.getElementById('specInverter');
+            const capEl = document.getElementById('specCapacity');
+            const effEl = document.getElementById('specEfficiency');
+            const priceEl = document.getElementById('specPrice');
+
+            if (modelEl) modelEl.textContent = `ESS KSTAR — ${selectedInv}kW / ${selectedBat}kWh`;
+
+            const updates = [
+                [invEl, selectedInv + ' kW'],
+                [capEl, selectedBat + ' kWh'],
+                [effEl, inv.efficiency],
+                [priceEl, formattedPrice]
+            ];
+
+            updates.forEach(([el, val]) => {
+                if (!el) return;
+                if (el.textContent !== val) {
+                    el.textContent = val;
+                    const spec = el.closest('.equip__spec');
+                    if (spec) {
+                        spec.classList.remove('equip__spec--changed');
+                        void spec.offsetWidth;
+                        spec.classList.add('equip__spec--changed');
+                    }
+                }
+            });
+        }
+
+        inverterOptions.addEventListener('click', (e) => {
+            const btn = e.target.closest('.equip-config__btn');
+            if (!btn) return;
+            inverterOptions.querySelectorAll('.equip-config__btn').forEach(b => b.classList.remove('equip-config__btn--active'));
+            btn.classList.add('equip-config__btn--active');
+            selectedInv = parseInt(btn.dataset.inv);
+            updateEquipSpecs();
+        });
+
+        batteryOptions.addEventListener('click', (e) => {
+            const btn = e.target.closest('.equip-config__btn');
+            if (!btn) return;
+            batteryOptions.querySelectorAll('.equip-config__btn').forEach(b => b.classList.remove('equip-config__btn--active'));
+            btn.classList.add('equip-config__btn--active');
+            selectedBat = parseInt(btn.dataset.bat);
+            updateEquipSpecs();
+        });
+    }
 
     // ========================================
     // CALCULATOR

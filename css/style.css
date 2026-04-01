@@ -1257,6 +1257,75 @@ img { max-width: 100%; display: block; }
 
 .equipment { background: var(--bg-light); }
 
+.equip-config {
+    display: flex;
+    gap: 40px;
+    justify-content: center;
+    margin-top: 36px;
+    margin-bottom: 40px;
+}
+
+.equip-config__group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.equip-config__label {
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+.equip-config__options {
+    display: flex;
+    gap: 6px;
+}
+
+.equip-config__btn {
+    padding: 8px 16px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: var(--bg-card);
+    color: var(--text-muted);
+    font-family: var(--font);
+    font-size: 0.82rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.equip-config__btn:hover {
+    border-color: rgba(74, 157, 91, 0.3);
+    color: var(--text);
+}
+
+.equip-config__btn--active {
+    background: var(--accent-dim);
+    border-color: var(--accent);
+    color: var(--accent);
+    box-shadow: 0 0 16px rgba(74, 157, 91, 0.15);
+}
+
+.equip__spec-value--accent {
+    color: var(--accent) !important;
+}
+
+@keyframes specFlash {
+    0% { background: transparent; }
+    30% { background: rgba(74, 157, 91, 0.12); }
+    100% { background: transparent; }
+}
+
+.equip__spec--changed {
+    animation: specFlash 0.8s ease;
+    border-radius: 6px;
+}
+
 .equip {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -2350,6 +2419,8 @@ img { max-width: 100%; display: block; }
     }
 
     .equip { grid-template-columns: 1fr; }
+    .equip-config { flex-direction: column; gap: 20px; align-items: center; margin-top: 24px; margin-bottom: 28px; }
+    .equip-config__options { flex-wrap: wrap; justify-content: center; }
 
     .projects__grid { grid-template-columns: 1fr; }
 
