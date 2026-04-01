@@ -1348,17 +1348,17 @@ img { max-width: 100%; display: block; }
 }
 
 .equip__zone--inv {
-    left: 69.8%;
+    left: 70.2%;
     top: 21.7%;
-    width: 14.8%;
-    height: 45.8%;
+    width: 14.0%;
+    height: 37.8%;
 }
 
 .equip__zone--bat {
     left: 15.9%;
-    top: 5.2%;
-    width: 52.8%;
-    height: 88.6%;
+    top: 5.7%;
+    width: 52.2%;
+    height: 86.8%;
 }
 
 .equip__zone--active {
