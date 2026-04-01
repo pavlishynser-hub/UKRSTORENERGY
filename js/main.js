@@ -321,6 +321,22 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
+        const zoneInv = document.getElementById('zoneInverter');
+        const zoneBat = document.getElementById('zoneBattery');
+        let zoneTimer = null;
+
+        function flashZone(zone) {
+            if (!zone) return;
+            if (zoneTimer) clearTimeout(zoneTimer);
+            if (zoneInv) zoneInv.classList.remove('equip__zone--active');
+            if (zoneBat) zoneBat.classList.remove('equip__zone--active');
+            void zone.offsetWidth;
+            zone.classList.add('equip__zone--active');
+            zoneTimer = setTimeout(() => {
+                zone.classList.remove('equip__zone--active');
+            }, 3000);
+        }
+
         inverterOptions.addEventListener('click', (e) => {
             const btn = e.target.closest('.equip-config__btn');
             if (!btn) return;
@@ -328,6 +344,7 @@ document.addEventListener('DOMContentLoaded', () => {
             btn.classList.add('equip-config__btn--active');
             selectedInv = parseInt(btn.dataset.inv);
             updateEquipSpecs();
+            flashZone(zoneInv);
         });
 
         batteryOptions.addEventListener('click', (e) => {
@@ -337,6 +354,7 @@ document.addEventListener('DOMContentLoaded', () => {
             btn.classList.add('equip-config__btn--active');
             selectedBat = parseInt(btn.dataset.bat);
             updateEquipSpecs();
+            flashZone(zoneBat);
         });
     }
 
