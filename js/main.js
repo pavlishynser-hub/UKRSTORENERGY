@@ -323,6 +323,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const zoneInv = document.getElementById('zoneInverter');
         const zoneBat = document.getElementById('zoneBattery');
+        const equipDim = document.getElementById('equipDim');
         let zoneTimer = null;
 
         function flashZone(zone) {
@@ -330,11 +331,14 @@ document.addEventListener('DOMContentLoaded', () => {
             if (zoneTimer) clearTimeout(zoneTimer);
             if (zoneInv) zoneInv.classList.remove('equip__zone--active');
             if (zoneBat) zoneBat.classList.remove('equip__zone--active');
+            if (equipDim) equipDim.classList.remove('equip__dim--active');
             void zone.offsetWidth;
             zone.classList.add('equip__zone--active');
+            if (equipDim) equipDim.classList.add('equip__dim--active');
             zoneTimer = setTimeout(() => {
                 zone.classList.remove('equip__zone--active');
-            }, 3000);
+                if (equipDim) equipDim.classList.remove('equip__dim--active');
+            }, 3500);
         }
 
         inverterOptions.addEventListener('click', (e) => {
