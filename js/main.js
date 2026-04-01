@@ -338,7 +338,7 @@ document.addEventListener('DOMContentLoaded', () => {
             zoneTimer = setTimeout(() => {
                 zone.classList.remove('equip__zone--active');
                 if (equipDim) equipDim.classList.remove('equip__dim--active');
-            }, 3500);
+            }, 2500);
         }
 
         inverterOptions.addEventListener('click', (e) => {
