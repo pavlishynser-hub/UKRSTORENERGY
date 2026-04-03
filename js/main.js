@@ -79,6 +79,12 @@ document.addEventListener('DOMContentLoaded', () => {
             footerDesc: 'Офіційний дистриб\'ютор KSTAR в Україні.<br>Системи накопичення енергії для бізнесу.',
             footerCopy: '&copy; 2025–2026 UKRSTORENERGY. Всі права захищено.',
             chatStatus: 'AI Енергетичний консультант', chatPlaceholder: 'Ваше питання...',
+            chatWelcome1: 'Вітаю! Я AI енергетичний консультант UKRSTORENERGY. Можу:',
+            chatWelcome2: '📊 Розрахувати економію та ROI',
+            chatWelcome3: '💰 Оцінити вартість системи',
+            chatWelcome4: '⚡ Підібрати потужність',
+            chatWelcome5: '🔋 Порадити з інтеграцією',
+            chatWelcome6: 'Напишіть "Скільки коштує?" або опишіть ваш бізнес — і я зроблю розрахунок!',
             notifyTitle: 'Безкоштовний розрахунок ROI',
             notifyDesc: 'Дізнайтесь, скільки заощадить ваш бізнес з ESS — за 2 хвилини',
             notifyCta: 'Розрахувати'
@@ -157,6 +163,12 @@ document.addEventListener('DOMContentLoaded', () => {
             footerDesc: 'Official KSTAR distributor in Ukraine.<br>Energy storage systems for business.',
             footerCopy: '&copy; 2025–2026 UKRSTORENERGY. All rights reserved.',
             chatStatus: 'AI Energy Consultant', chatPlaceholder: 'Your question...',
+            chatWelcome1: 'Hello! I\'m the AI energy consultant at UKRSTORENERGY. I can:',
+            chatWelcome2: '📊 Calculate savings & ROI',
+            chatWelcome3: '💰 Estimate system cost',
+            chatWelcome4: '⚡ Select the right capacity',
+            chatWelcome5: '🔋 Advise on integration',
+            chatWelcome6: 'Type "How much does it cost?" or describe your business — and I\'ll run the numbers!',
             notifyTitle: 'Free ROI Calculation',
             notifyDesc: 'Find out how much your business can save with ESS — in 2 minutes',
             notifyCta: 'Calculate'
@@ -516,13 +528,17 @@ document.addEventListener('DOMContentLoaded', () => {
             const res = await fetch('/api/chat', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ message: msg, history: chatHistory })
+                body: JSON.stringify({ message: msg, history: chatHistory, siteLang: currentLang })
             });
             const data = await res.json();
             if (data.reply) return data.reply;
-            return 'Вибачте, сталася помилка. Зателефонуйте нам: +38 (067) 208-55-58';
+            return currentLang === 'en'
+                ? 'Sorry, an error occurred. Call us: +38 (067) 208-55-58'
+                : 'Вибачте, сталася помилка. Зателефонуйте нам: +38 (067) 208-55-58';
         } catch {
-            return 'Вибачте, сервіс тимчасово недоступний. Зв\'яжіться з нами: +38 (067) 208-55-58';
+            return currentLang === 'en'
+                ? 'Sorry, the service is temporarily unavailable. Contact us: +38 (067) 208-55-58'
+                : 'Вибачте, сервіс тимчасово недоступний. Зв\'яжіться з нами: +38 (067) 208-55-58';
         }
     }
 
