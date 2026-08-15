@@ -191,6 +191,9 @@ img { max-width: 100%; display: block; }
 .mobile-nav__contact {
     margin-top: auto;
     padding: 24px 0 36px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
 }
 
 .mobile-nav__contact a {
@@ -349,7 +352,8 @@ img { max-width: 100%; display: block; }
     overflow: hidden;
 }
 
-.hero__bg img {
+.hero__bg img,
+.hero__bg video {
     position: absolute;
     inset: 0;
     display: block;
@@ -357,6 +361,16 @@ img { max-width: 100%; display: block; }
     height: 100%;
     object-fit: cover;
     object-position: center center;
+}
+
+.hero__bg video {
+    z-index: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hero__bg video {
+        display: none;
+    }
 }
 
 /* Overlays for text readability */
@@ -532,6 +546,12 @@ img { max-width: 100%; display: block; }
     padding: 18px var(--hero-pad-x, clamp(1.25rem, 4.2vw, 3rem)) 20px;
     margin-top: auto;
     border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.hero__phones {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
 }
 
 .hero__contact {
@@ -2068,6 +2088,12 @@ img { max-width: 100%; display: block; }
     color: var(--white);
 }
 
+.contacts__phones {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
 .contacts__item a:hover { color: var(--accent); }
 
 .contacts__form {
@@ -2340,7 +2366,8 @@ img { max-width: 100%; display: block; }
     .hero-nav .lang-switch { display: none; }
 
     /* Background: focus on the subject */
-    .hero__bg img {
+    .hero__bg img,
+    .hero__bg video {
         object-position: 60% center;
     }
 

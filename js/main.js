@@ -1,5 +1,16 @@
 document.addEventListener('DOMContentLoaded', () => {
 
+    // Hero background video: retry muted autoplay if the browser deferred it
+    const heroVideo = document.querySelector('.hero__video');
+    if (heroVideo) {
+        heroVideo.muted = true;
+        const tryPlay = () => heroVideo.play().catch(() => {});
+        tryPlay();
+        document.addEventListener('visibilitychange', () => {
+            if (!document.hidden) tryPlay();
+        });
+    }
+
     // ========================================
     // i18n — LANGUAGE SWITCHER
     // ========================================
@@ -533,12 +544,12 @@ document.addEventListener('DOMContentLoaded', () => {
             const data = await res.json();
             if (data.reply) return data.reply;
             return currentLang === 'en'
-                ? 'Sorry, an error occurred. Call us: +38 (067) 208-55-58'
-                : 'Вибачте, сталася помилка. Зателефонуйте нам: +38 (067) 208-55-58';
+                ? 'Sorry, an error occurred. Call us: +380 (96) 555 40 18 or +380 (95) 555 40 17'
+                : 'Вибачте, сталася помилка. Зателефонуйте нам: +380 (96) 555 40 18 або +380 (95) 555 40 17';
         } catch {
             return currentLang === 'en'
-                ? 'Sorry, the service is temporarily unavailable. Contact us: +38 (067) 208-55-58'
-                : 'Вибачте, сервіс тимчасово недоступний. Зв\'яжіться з нами: +38 (067) 208-55-58';
+                ? 'Sorry, the service is temporarily unavailable. Contact us: +380 (96) 555 40 18 or +380 (95) 555 40 17'
+                : 'Вибачте, сервіс тимчасово недоступний. Зв\'яжіться з нами: +380 (96) 555 40 18 або +380 (95) 555 40 17';
         }
     }
 
