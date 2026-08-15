@@ -4,11 +4,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const heroVideo = document.querySelector('.hero__video');
     if (heroVideo) {
         heroVideo.muted = true;
+        heroVideo.defaultMuted = true;
+        heroVideo.playsInline = true;
+        heroVideo.setAttribute('playsinline', '');
+        heroVideo.setAttribute('muted', '');
         const tryPlay = () => heroVideo.play().catch(() => {});
         tryPlay();
         document.addEventListener('visibilitychange', () => {
             if (!document.hidden) tryPlay();
         });
+        document.addEventListener('touchstart', tryPlay, { once: true, passive: true });
     }
 
     // ========================================
