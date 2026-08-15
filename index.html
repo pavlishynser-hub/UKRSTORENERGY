@@ -43,7 +43,7 @@
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="preload" as="image" href="images/IMG_2591.PNG">
-    <link rel="stylesheet" href="css/style.css?v=10">
+    <link rel="stylesheet" href="css/style.css?v=11">
 
     <!-- JSON-LD Structured Data -->
     <script type="application/ld+json">
@@ -56,7 +56,7 @@
                 "name": "UKRSTORENERGY",
                 "url": "https://use.net.ua",
                 "description": "Офіційний дистриб'ютор KSTAR ESS в Україні. Промислові системи накопичення енергії для бізнесу.",
-                "telephone": "+380672085558",
+                "telephone": ["+380965554018", "+380955554017"],
                 "email": "info@ukrstorenergy.com",
                 "address": {
                     "@type": "PostalAddress",
@@ -148,7 +148,7 @@
                 "@type": "LocalBusiness",
                 "name": "UKRSTORENERGY",
                 "description": "Промислові системи накопичення енергії KSTAR ESS в Україні",
-                "telephone": "+380672085558",
+                "telephone": ["+380965554018", "+380955554017"],
                 "email": "info@ukrstorenergy.com",
                 "url": "https://use.net.ua",
                 "address": {
@@ -294,9 +294,12 @@
             </button>
         </header>
 
-        <!-- Background image + overlay layers -->
+        <!-- Background video + static poster/fallback + overlay layers -->
         <div class="hero__bg">
-            <img src="images/IMG_2591.PNG" alt="Промислова система накопичення енергії KSTAR ESS — акумуляторна станція для бізнесу в Україні" width="1536" height="1024" fetchpriority="high">
+            <img class="hero__poster" src="images/IMG_2591.PNG" alt="Промислова система накопичення енергії KSTAR ESS — акумуляторна станція для бізнесу в Україні" width="1536" height="1024" fetchpriority="high">
+            <video class="hero__video" autoplay muted loop playsinline webkit-playsinline preload="auto" poster="images/IMG_2591.PNG" aria-hidden="true">
+                <source src="videos/hero.mp4" type="video/mp4">
+            </video>
         </div>
         <div class="hero__overlay hero__overlay--left"></div>
         <div class="hero__overlay hero__overlay--top"></div>
@@ -316,10 +319,16 @@
 
         <!-- Bottom contacts -->
         <div class="hero__bottom">
-            <a href="tel:+380672085558" class="hero__contact">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-                +38 (067) 208-55-58
-            </a>
+            <div class="hero__phones">
+                <a href="tel:+380965554018" class="hero__contact">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+                    +380 (96) 555 40 18
+                </a>
+                <a href="tel:+380955554017" class="hero__contact">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+                    +380 (95) 555 40 17
+                </a>
+            </div>
             <a href="mailto:info@ukrstorenergy.com" class="hero__contact">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
                 info@ukrstorenergy.com
@@ -375,7 +384,8 @@
         <button class="lang-switch__btn" data-lang="en">EN</button>
     </div>
     <div class="mobile-nav__contact">
-        <a href="tel:+380672085558">+38 (067) 208-55-58</a>
+        <a href="tel:+380965554018">+380 (96) 555 40 18</a>
+        <a href="tel:+380955554017">+380 (95) 555 40 17</a>
     </div>
 </nav>
 
@@ -1047,7 +1057,10 @@
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
                     <div>
                         <strong data-i18n="contactPhone">Телефон</strong>
-                        <a href="tel:+380672085558">+38 (067) 208-55-58</a>
+                        <div class="contacts__phones">
+                            <a href="tel:+380965554018">+380 (96) 555 40 18</a>
+                            <a href="tel:+380955554017">+380 (95) 555 40 17</a>
+                        </div>
                     </div>
                 </div>
                 <div class="contacts__item">
@@ -1224,7 +1237,8 @@
             <a href="#contacts" data-i18n="navContacts">Контакти</a>
         </div>
         <div class="footer__contacts">
-            <a href="tel:+380672085558">+38 (067) 208-55-58</a>
+            <a href="tel:+380965554018">+380 (96) 555 40 18</a>
+            <a href="tel:+380955554017">+380 (95) 555 40 17</a>
             <a href="mailto:info@ukrstorenergy.com">info@ukrstorenergy.com</a>
         </div>
     </div>
@@ -1235,6 +1249,6 @@
     </div>
 </footer>
 
-<script src="js/main.js?v=10"></script>
+<script src="js/main.js?v=11"></script>
 </body>
 </html>
