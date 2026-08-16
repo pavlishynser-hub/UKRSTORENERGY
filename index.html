@@ -43,7 +43,10 @@
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="preload" as="image" href="images/IMG_2591.PNG" media="(min-width: 769px)">
-    <link rel="stylesheet" href="css/style.css?v=24">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <link rel="preload" as="video" href="videos/hero-mobile.mp4" media="(max-width: 768px)">
+    <link rel="stylesheet" href="css/app.m2.css">
 
     <!-- JSON-LD Structured Data -->
     <script type="application/ld+json">
@@ -304,7 +307,7 @@
         <!-- Background video + static poster/fallback + overlay layers -->
         <div class="hero__bg">
             <img class="hero__poster" src="images/IMG_2591.PNG" alt="" width="1536" height="1024" decoding="async">
-            <video class="hero__video" src="videos/hero.mp4" autoplay muted loop playsinline webkit-playsinline preload="auto"></video>
+            <video class="hero__video" autoplay muted loop playsinline webkit-playsinline preload="auto"></video>
             <div class="hero__overlay hero__overlay--left"></div>
             <div class="hero__overlay hero__overlay--top"></div>
             <div class="hero__overlay hero__overlay--bottom"></div>
@@ -313,11 +316,14 @@
         (function () {
             var video = document.querySelector('.hero__video');
             if (!video) return;
+            var mobile = window.matchMedia('(max-width: 768px)').matches;
             video.muted = true;
             video.defaultMuted = true;
             video.playsInline = true;
             video.setAttribute('playsinline', '');
-            video.setAttribute('webkit-playsinline', '');
+            video.setAttribute('webkit-playsinline', 'true');
+            video.src = mobile ? 'videos/hero-mobile.mp4' : 'videos/hero.mp4';
+            video.load();
             var playPromise = video.play();
             if (playPromise && playPromise.catch) playPromise.catch(function () {});
         })();
@@ -1270,6 +1276,6 @@
     </div>
 </footer>
 
-<script src="js/main.js?v=23"></script>
+<script src="js/app.m2.js"></script>
 </body>
 </html>
