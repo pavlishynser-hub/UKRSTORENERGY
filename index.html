@@ -46,7 +46,7 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <link rel="preload" as="video" href="videos/hero-mobile.mp4" media="(max-width: 768px)">
-    <link rel="stylesheet" href="css/app.m4.css">
+    <link rel="stylesheet" href="css/app.m5.css">
     <style>
     @media (max-width: 768px), (max-device-width: 500px) {
         .hero, .hero-page { min-height: 0 !important; height: auto !important; }
@@ -54,6 +54,13 @@
         .hero-nav .logo, .header .logo { gap: 6px !important; align-items: center !important; }
         .hero-nav .logo__mark, .header .logo__mark { display: block !important; max-width: 58px !important; height: auto !important; }
         .hero__poster { display: none !important; }
+        .hero__video--desktop { display: none !important; }
+        .hero__video--mobile { display: block !important; }
+        .hero__video-mask { display: block !important; z-index: 4 !important; pointer-events: none !important; }
+        .hero__bg.is-playing .hero__video-mask { opacity: 0 !important; }
+        .hero__video::-webkit-media-controls,
+        .hero__video::-webkit-media-controls-start-playback-button,
+        .hero__video::-webkit-media-controls-overlay-play-button { display: none !important; -webkit-appearance: none; }
         .hero__bg { position: relative !important; inset: auto !important; width: 100% !important; height: 260px !important; min-height: 0 !important; max-height: 270px !important; }
         .hero__bg video { position: absolute !important; inset: 0 !important; width: 100% !important; height: 100% !important; object-fit: cover !important; pointer-events: none !important; }
         .hero__overlay--left, .hero__overlay--top, .hero__overlay--bottom { background: none !important; }
@@ -333,31 +340,40 @@
         </header>
 
         <!-- Background video + static poster/fallback + overlay layers -->
-        <div class="hero__bg">
+        <div class="hero__bg" id="heroBg">
             <img class="hero__poster" src="images/IMG_2591.PNG" alt="" width="1536" height="1024" decoding="async">
-            <video class="hero__video" autoplay muted loop playsinline webkit-playsinline preload="auto"></video>
+            <video class="hero__video hero__video--desktop" src="videos/hero.mp4" autoplay muted loop playsinline webkit-playsinline preload="auto"></video>
+            <video class="hero__video hero__video--mobile" src="videos/hero-mobile.mp4" autoplay muted loop playsinline webkit-playsinline preload="auto"></video>
+            <img class="hero__video-mask" src="images/hero-frame.jpg" alt="" width="640" height="350" aria-hidden="true">
             <div class="hero__overlay hero__overlay--left"></div>
             <div class="hero__overlay hero__overlay--top"></div>
             <div class="hero__overlay hero__overlay--bottom"></div>
         </div>
         <script>
         (function () {
-            var video = document.querySelector('.hero__video');
-            if (!video) return;
-            var ua = navigator.userAgent || '';
-            var mobile = /iPhone|iPod|Android.+Mobile|webOS|BlackBerry|IEMobile|Opera Mini/i.test(ua)
-                || window.matchMedia('(max-width: 768px)').matches
-                || window.matchMedia('(max-device-width: 500px)').matches
-                || Math.min(screen.width, screen.height) <= 500;
-            video.muted = true;
-            video.defaultMuted = true;
-            video.playsInline = true;
-            video.setAttribute('playsinline', '');
-            video.setAttribute('webkit-playsinline', 'true');
-            video.src = mobile ? 'videos/hero-mobile.mp4' : 'videos/hero.mp4';
-            video.load();
-            var playPromise = video.play();
-            if (playPromise && playPromise.catch) playPromise.catch(function () {});
+            var bg = document.getElementById('heroBg');
+            var videos = document.querySelectorAll('.hero__video');
+            function tryPlay(video) {
+                video.muted = true;
+                video.defaultMuted = true;
+                video.controls = false;
+                video.playsInline = true;
+                video.setAttribute('playsinline', '');
+                video.setAttribute('webkit-playsinline', 'true');
+                video.removeAttribute('controls');
+                var p = video.play();
+                if (p && p.catch) p.catch(function () {});
+            }
+            videos.forEach(function (video) {
+                video.addEventListener('playing', function () {
+                    if (bg) bg.classList.add('is-playing');
+                });
+                tryPlay(video);
+                video.addEventListener('canplay', function () { tryPlay(video); });
+            });
+            document.addEventListener('touchstart', function () {
+                videos.forEach(tryPlay);
+            }, { once: true, passive: true });
         })();
         </script>
 
@@ -1308,6 +1324,6 @@
     </div>
 </footer>
 
-<script src="js/app.m4.js"></script>
+<script src="js/app.m5.js"></script>
 </body>
 </html>
