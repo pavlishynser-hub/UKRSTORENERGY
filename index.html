@@ -43,7 +43,7 @@
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="preload" as="image" href="images/IMG_2591.PNG" media="(min-width: 769px)">
-    <link rel="stylesheet" href="css/style.css?v=23">
+    <link rel="stylesheet" href="css/style.css?v=24">
 
     <!-- JSON-LD Structured Data -->
     <script type="application/ld+json">
@@ -303,14 +303,25 @@
 
         <!-- Background video + static poster/fallback + overlay layers -->
         <div class="hero__bg">
-            <img class="hero__poster" src="images/IMG_2591.PNG" alt="Промислова система накопичення енергії KSTAR ESS — акумуляторна станція для бізнесу в Україні" width="1536" height="1024" decoding="async">
-            <video class="hero__video" autoplay muted loop playsinline webkit-playsinline preload="auto" disablepictureinpicture controlslist="nodownload nofullscreen noremoteplayback" aria-hidden="true">
-                <source src="videos/hero.mp4" type="video/mp4">
-            </video>
+            <img class="hero__poster" src="images/IMG_2591.PNG" alt="" width="1536" height="1024" decoding="async">
+            <video class="hero__video" src="videos/hero.mp4" autoplay muted loop playsinline webkit-playsinline preload="auto"></video>
+            <div class="hero__overlay hero__overlay--left"></div>
+            <div class="hero__overlay hero__overlay--top"></div>
+            <div class="hero__overlay hero__overlay--bottom"></div>
         </div>
-        <div class="hero__overlay hero__overlay--left"></div>
-        <div class="hero__overlay hero__overlay--top"></div>
-        <div class="hero__overlay hero__overlay--bottom"></div>
+        <script>
+        (function () {
+            var video = document.querySelector('.hero__video');
+            if (!video) return;
+            video.muted = true;
+            video.defaultMuted = true;
+            video.playsInline = true;
+            video.setAttribute('playsinline', '');
+            video.setAttribute('webkit-playsinline', '');
+            var playPromise = video.play();
+            if (playPromise && playPromise.catch) playPromise.catch(function () {});
+        })();
+        </script>
 
         <!-- Hero body -->
         <div class="hero__body">
@@ -1259,6 +1270,6 @@
     </div>
 </footer>
 
-<script src="js/main.js?v=22"></script>
+<script src="js/main.js?v=23"></script>
 </body>
 </html>

@@ -1,33 +1,26 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // Hero background video: muted inline autoplay (iOS/Safari included)
+    // Hero video: muted must be set before play() for iOS autoplay
     const heroVideo = document.querySelector('.hero__video');
     if (heroVideo) {
         heroVideo.muted = true;
         heroVideo.defaultMuted = true;
-        heroVideo.volume = 0;
-        heroVideo.controls = false;
         heroVideo.playsInline = true;
-        heroVideo.removeAttribute('controls');
         heroVideo.setAttribute('playsinline', '');
         heroVideo.setAttribute('webkit-playsinline', '');
-        heroVideo.setAttribute('muted', '');
-        if (window.matchMedia('(max-width: 768px)').matches) {
-            heroVideo.removeAttribute('poster');
-        }
-        const tryPlay = () => {
-            const playPromise = heroVideo.play();
-            if (playPromise && typeof playPromise.catch === 'function') {
-                playPromise.catch(() => {});
-            }
-        };
-        tryPlay();
-        heroVideo.addEventListener('loadeddata', tryPlay);
-        heroVideo.addEventListener('canplay', tryPlay);
-        document.addEventListener('visibilitychange', () => {
-            if (!document.hidden) tryPlay();
+        heroVideo.removeAttribute('controls');
+        heroVideo.removeAttribute('poster');
+        heroVideo.play().catch(() => {});
+        heroVideo.addEventListener('canplay', () => {
+            heroVideo.muted = true;
+            heroVideo.play().catch(() => {});
         });
-        document.addEventListener('touchstart', tryPlay, { once: true, passive: true });
+        document.addEventListener('visibilitychange', () => {
+            if (!document.hidden) {
+                heroVideo.muted = true;
+                heroVideo.play().catch(() => {});
+            }
+        });
     }
 
     // ========================================
