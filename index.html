@@ -342,8 +342,8 @@
         <!-- Background video + static poster/fallback + overlay layers -->
         <div class="hero__bg" id="heroBg">
             <img class="hero__poster" src="images/IMG_2591.PNG" alt="" width="1536" height="1024" decoding="async">
-            <video class="hero__video hero__video--desktop" src="videos/hero.mp4" autoplay muted loop playsinline webkit-playsinline preload="auto"></video>
-            <video class="hero__video hero__video--mobile" src="videos/hero-mobile.mp4" autoplay muted loop playsinline webkit-playsinline preload="auto"></video>
+            <video class="hero__video hero__video--desktop" src="videos/hero.mp4" autoplay muted playsinline webkit-playsinline preload="auto"></video>
+            <video class="hero__video hero__video--mobile" src="videos/hero-mobile.mp4" autoplay muted playsinline webkit-playsinline preload="auto"></video>
             <img class="hero__video-mask" src="images/hero-frame.jpg" alt="" width="640" height="350" aria-hidden="true">
             <div class="hero__overlay hero__overlay--left"></div>
             <div class="hero__overlay hero__overlay--top"></div>
@@ -354,19 +354,29 @@
             var bg = document.getElementById('heroBg');
             var videos = document.querySelectorAll('.hero__video');
             function tryPlay(video) {
+                if (video.ended || video.dataset.done === '1') return;
                 video.muted = true;
                 video.defaultMuted = true;
+                video.loop = false;
                 video.controls = false;
                 video.playsInline = true;
                 video.setAttribute('playsinline', '');
                 video.setAttribute('webkit-playsinline', 'true');
+                video.removeAttribute('loop');
                 video.removeAttribute('controls');
                 var p = video.play();
                 if (p && p.catch) p.catch(function () {});
             }
             videos.forEach(function (video) {
+                video.loop = false;
+                video.removeAttribute('loop');
                 video.addEventListener('playing', function () {
                     if (bg) bg.classList.add('is-playing');
+                });
+                video.addEventListener('ended', function () {
+                    video.dataset.done = '1';
+                    video.pause();
+                    if (video.duration) video.currentTime = video.duration;
                 });
                 tryPlay(video);
                 video.addEventListener('canplay', function () { tryPlay(video); });
@@ -1324,6 +1334,6 @@
     </div>
 </footer>
 
-<script src="js/app.m5.js"></script>
+<script src="js/app.m6.js"></script>
 </body>
 </html>
