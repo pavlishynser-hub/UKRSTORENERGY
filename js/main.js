@@ -1,15 +1,29 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // Hero background video: retry muted autoplay if the browser deferred it
+    // Hero background video: muted inline autoplay (iOS/Safari included)
     const heroVideo = document.querySelector('.hero__video');
     if (heroVideo) {
         heroVideo.muted = true;
         heroVideo.defaultMuted = true;
+        heroVideo.volume = 0;
+        heroVideo.controls = false;
         heroVideo.playsInline = true;
+        heroVideo.removeAttribute('controls');
         heroVideo.setAttribute('playsinline', '');
+        heroVideo.setAttribute('webkit-playsinline', '');
         heroVideo.setAttribute('muted', '');
-        const tryPlay = () => heroVideo.play().catch(() => {});
+        if (window.matchMedia('(max-width: 768px)').matches) {
+            heroVideo.removeAttribute('poster');
+        }
+        const tryPlay = () => {
+            const playPromise = heroVideo.play();
+            if (playPromise && typeof playPromise.catch === 'function') {
+                playPromise.catch(() => {});
+            }
+        };
         tryPlay();
+        heroVideo.addEventListener('loadeddata', tryPlay);
+        heroVideo.addEventListener('canplay', tryPlay);
         document.addEventListener('visibilitychange', () => {
             if (!document.hidden) tryPlay();
         });
