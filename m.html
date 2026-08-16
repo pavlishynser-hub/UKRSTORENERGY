@@ -46,12 +46,13 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <link rel="preload" as="video" href="videos/hero-mobile.mp4" media="(max-width: 768px)">
-    <link rel="stylesheet" href="css/app.m3.css">
+    <link rel="stylesheet" href="css/app.m4.css">
     <style>
     @media (max-width: 768px), (max-device-width: 500px) {
         .hero, .hero-page { min-height: 0 !important; height: auto !important; }
         .hero-nav { position: relative !important; height: 72px !important; padding: 0 24px !important; background: none !important; }
-        .hero-nav .logo__mark, .header .logo__mark { display: none !important; }
+        .hero-nav .logo, .header .logo { gap: 6px !important; align-items: center !important; }
+        .hero-nav .logo__mark, .header .logo__mark { display: block !important; max-width: 58px !important; height: auto !important; }
         .hero__poster { display: none !important; }
         .hero__bg { position: relative !important; inset: auto !important; width: 100% !important; height: 260px !important; min-height: 0 !important; max-height: 270px !important; }
         .hero__bg video { position: absolute !important; inset: 0 !important; width: 100% !important; height: 100% !important; object-fit: cover !important; pointer-events: none !important; }
@@ -1307,6 +1308,6 @@
     </div>
 </footer>
 
-<script src="js/app.m3.js"></script>
+<script src="js/app.m4.js"></script>
 </body>
 </html>
