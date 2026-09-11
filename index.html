@@ -46,7 +46,7 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <link rel="preload" as="video" href="videos/hero-mobile-v3.mp4" media="(max-width: 768px)">
-    <link rel="stylesheet" href="css/app.m6.css">
+    <link rel="stylesheet" href="css/app.m7.css">
     <style>
     @media (max-width: 768px), (max-device-width: 500px) {
         .hero, .hero-page { min-height: 0 !important; height: auto !important; }
@@ -819,33 +819,35 @@
         <h2 class="section__title fade-up" data-i18n="equipTitle">Обладнання</h2>
         <p class="section__subtitle fade-up" data-i18n="equipSubtitle">Оберіть сценарій використання, потужність інвертора та ємність батареї</p>
 
-        <div class="equip-solutions fade-up" id="equipSolutions">
-            <button type="button" class="equip-sol equip-sol--active" data-sol="industrial" aria-pressed="true">
-                <span class="equip-sol__icon" aria-hidden="true">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="7" height="18" rx="1"/><rect x="14" y="8" width="7" height="13" rx="1"/><path d="M6.5 8v.01M6.5 12v.01M6.5 16v.01M17.5 12v.01M17.5 16v.01"/></svg>
-                </span>
-                <span class="equip-sol__body">
-                    <span class="equip-sol__kicker" data-i18n="equipSolIndKicker">Промислові рішення</span>
-                    <span class="equip-sol__title" data-i18n="equipSolIndTitle">Для бізнесу</span>
-                    <span class="equip-sol__meta" data-i18n="equipSolIndMeta">Підприємства · офіси · комерція</span>
-                </span>
-                <span class="equip-sol__go" aria-hidden="true">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg>
-                </span>
-            </button>
-            <button type="button" class="equip-sol" data-sol="home" aria-pressed="false">
-                <span class="equip-sol__icon" aria-hidden="true">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 10.5L12 3l9 7.5V20a1 1 0 01-1 1h-5v-6H9v6H4a1 1 0 01-1-1v-9.5z"/></svg>
-                </span>
-                <span class="equip-sol__body">
-                    <span class="equip-sol__kicker" data-i18n="equipSolHomeKicker">Побутові рішення</span>
-                    <span class="equip-sol__title" data-i18n="equipSolHomeTitle">Для дому</span>
-                    <span class="equip-sol__meta" data-i18n="equipSolHomeMeta">Будинок · квартира · таунхаус</span>
-                </span>
-                <span class="equip-sol__go" aria-hidden="true">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg>
-                </span>
-            </button>
+        <div class="equip-solutions-viewport fade-up" id="equipSolutionsViewport">
+            <div class="equip-solutions" id="equipSolutions" data-index="0">
+                <button type="button" class="equip-sol equip-sol--active" data-sol="industrial" aria-pressed="true">
+                    <span class="equip-sol__icon" aria-hidden="true">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="7" height="18" rx="1"/><rect x="14" y="8" width="7" height="13" rx="1"/><path d="M6.5 8v.01M6.5 12v.01M6.5 16v.01M17.5 12v.01M17.5 16v.01"/></svg>
+                    </span>
+                    <span class="equip-sol__body">
+                        <span class="equip-sol__kicker" data-i18n="equipSolIndKicker">Промислові рішення</span>
+                        <span class="equip-sol__title" data-i18n="equipSolIndTitle">Для промислових потреб</span>
+                        <span class="equip-sol__meta" data-i18n="equipSolIndMeta">Підприємства · офіси · комерція</span>
+                    </span>
+                    <span class="equip-sol__go" aria-hidden="true">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg>
+                    </span>
+                </button>
+                <button type="button" class="equip-sol" data-sol="home" aria-pressed="false">
+                    <span class="equip-sol__icon" aria-hidden="true">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 10.5L12 3l9 7.5V20a1 1 0 01-1 1h-5v-6H9v6H4a1 1 0 01-1-1v-9.5z"/></svg>
+                    </span>
+                    <span class="equip-sol__body">
+                        <span class="equip-sol__kicker" data-i18n="equipSolHomeKicker">Побутові рішення</span>
+                        <span class="equip-sol__title" data-i18n="equipSolHomeTitle">Для побутових потреб</span>
+                        <span class="equip-sol__meta" data-i18n="equipSolHomeMeta">Будинок · квартира · таунхаус</span>
+                    </span>
+                    <span class="equip-sol__go" aria-hidden="true">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg>
+                    </span>
+                </button>
+            </div>
         </div>
         <div class="equip-solutions__nav fade-up">
             <span class="equip-solutions__hint" data-i18n="equipSwipe">Гортайте між рішеннями</span>
@@ -872,7 +874,7 @@
                 </div>
             </div>
             <div class="equip-config__group equip-config__group--bat">
-                <span class="equip-config__label"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="6" width="18" height="12" rx="2"/><line x1="23" y1="10" x2="23" y2="14"/><line x1="7" y1="10" x2="7" y2="14"/><line x1="12" y1="10" x2="12" y2="14"/></svg> <span data-i18n="equipBatLabel">Батарея</span></span>
+                <span class="equip-config__label"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="6" width="18" height="12" rx="2"/><line x1="23" y1="10" x2="23" y2="14"/><line x1="7" y1="10" x2="7" y2="14"/><line x1="12" y1="10" x2="12" y2="14"/></svg> <span id="equipBatLabelText" data-i18n="equipBatLabel">Батарея</span></span>
                 <div class="equip-config__options" id="batteryOptions">
                     <button class="equip-config__btn equip-config__btn--bat equip-config__btn--active" data-bat="220">220 kWh</button>
                     <button class="equip-config__btn equip-config__btn--bat" data-bat="240">240 kWh</button>
@@ -883,8 +885,11 @@
 
         <div class="equip fade-up">
             <div class="equip__visual">
-                <div class="equip__image" id="equipImage">
-                    <img src="images/IMG_2527.webp" alt="Обладнання KSTAR ESS — промислова акумуляторна станція" loading="lazy" width="800" height="600" id="equipPhoto">
+                <div class="equip__image equip__image--industrial" id="equipImage">
+                    <div class="equip__photos">
+                        <img src="images/IMG_2527.webp" alt="Обладнання KSTAR ESS — промислова акумуляторна станція" loading="lazy" width="800" height="600" id="equipPhoto" class="equip__photo">
+                        <img src="images/kstar-blue-pack-5-1.webp" alt="KSTAR BluE-PACK5.1 — модуль LiFePO₄ 5.12 kWh" loading="lazy" width="500" height="500" id="equipPhotoBat" class="equip__photo-bat" hidden>
+                    </div>
                     <div class="equip__dim" id="equipDim"></div>
                     <div class="equip__badge" id="equipBadge" data-i18n="equipBadgeInd">Промислова ESS</div>
                     <div class="equip__zone equip__zone--inv" id="zoneInverter"></div>
@@ -898,9 +903,17 @@
                         <span class="equip__spec-label" data-i18n="equipSpecInverter">Інвертор</span>
                         <span class="equip__spec-value" id="specInverter">50 kW</span>
                     </div>
+                    <div class="equip__spec equip__spec--home-only" hidden>
+                        <span class="equip__spec-label" data-i18n="equipSpecModel">Модель інвертора</span>
+                        <span class="equip__spec-value" id="specInverterModel">E10KT</span>
+                    </div>
                     <div class="equip__spec">
                         <span class="equip__spec-label" data-i18n="equipSpecCapacity">Ємність батареї</span>
                         <span class="equip__spec-value" id="specCapacity">220 kWh</span>
+                    </div>
+                    <div class="equip__spec equip__spec--home-only" hidden>
+                        <span class="equip__spec-label" data-i18n="equipSpecModules">Модулі батареї</span>
+                        <span class="equip__spec-value" id="specModules">4 × BluE-PACK5.1</span>
                     </div>
                     <div class="equip__spec">
                         <span class="equip__spec-label" data-i18n="equipSpecProtection">Захист</span>
@@ -1374,6 +1387,7 @@
     </div>
 </footer>
 
-<script src="js/app.m7.js"></script>
+<script src="js/equipment-data.js"></script>
+<script src="js/app.m8.js"></script>
 </body>
 </html>
