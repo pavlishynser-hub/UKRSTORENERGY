@@ -46,7 +46,7 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <link rel="preload" as="video" href="videos/hero-mobile-v3.mp4" media="(max-width: 768px)">
-    <link rel="stylesheet" href="css/app.m5.css">
+    <link rel="stylesheet" href="css/app.m6.css">
     <style>
     @media (max-width: 768px), (max-device-width: 500px) {
         .hero, .hero-page { min-height: 0 !important; height: auto !important; }
@@ -817,7 +817,47 @@
 <section class="section equipment" id="equipment">
     <div class="container">
         <h2 class="section__title fade-up" data-i18n="equipTitle">Обладнання</h2>
-        <p class="section__subtitle fade-up" data-i18n="equipSubtitle">Оберіть конфігурацію інвертора та батареї</p>
+        <p class="section__subtitle fade-up" data-i18n="equipSubtitle">Оберіть сценарій використання, потужність інвертора та ємність батареї</p>
+
+        <div class="equip-solutions fade-up" id="equipSolutions">
+            <button type="button" class="equip-sol equip-sol--active" data-sol="industrial" aria-pressed="true">
+                <span class="equip-sol__icon" aria-hidden="true">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="7" height="18" rx="1"/><rect x="14" y="8" width="7" height="13" rx="1"/><path d="M6.5 8v.01M6.5 12v.01M6.5 16v.01M17.5 12v.01M17.5 16v.01"/></svg>
+                </span>
+                <span class="equip-sol__body">
+                    <span class="equip-sol__kicker" data-i18n="equipSolIndKicker">Промислові рішення</span>
+                    <span class="equip-sol__title" data-i18n="equipSolIndTitle">Для бізнесу</span>
+                    <span class="equip-sol__meta" data-i18n="equipSolIndMeta">Підприємства · офіси · комерція</span>
+                </span>
+                <span class="equip-sol__go" aria-hidden="true">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg>
+                </span>
+            </button>
+            <button type="button" class="equip-sol" data-sol="home" aria-pressed="false">
+                <span class="equip-sol__icon" aria-hidden="true">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 10.5L12 3l9 7.5V20a1 1 0 01-1 1h-5v-6H9v6H4a1 1 0 01-1-1v-9.5z"/></svg>
+                </span>
+                <span class="equip-sol__body">
+                    <span class="equip-sol__kicker" data-i18n="equipSolHomeKicker">Побутові рішення</span>
+                    <span class="equip-sol__title" data-i18n="equipSolHomeTitle">Для дому</span>
+                    <span class="equip-sol__meta" data-i18n="equipSolHomeMeta">Будинок · квартира · таунхаус</span>
+                </span>
+                <span class="equip-sol__go" aria-hidden="true">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg>
+                </span>
+            </button>
+        </div>
+        <div class="equip-solutions__nav fade-up">
+            <span class="equip-solutions__hint" data-i18n="equipSwipe">Гортайте між рішеннями</span>
+            <div class="equip-solutions__arrows">
+                <button type="button" class="equip-solutions__arrow" id="equipSolPrev" aria-label="Попереднє рішення">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+                </button>
+                <button type="button" class="equip-solutions__arrow" id="equipSolNext" aria-label="Наступне рішення">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+                </button>
+            </div>
+        </div>
 
         <!-- Configurator selectors -->
         <div class="equip-config fade-up">
@@ -844,9 +884,9 @@
         <div class="equip fade-up">
             <div class="equip__visual">
                 <div class="equip__image" id="equipImage">
-                    <img src="images/IMG_2527.webp" alt="Обладнання KSTAR ESS — промислова акумуляторна станція" loading="lazy" width="800" height="600">
+                    <img src="images/IMG_2527.webp" alt="Обладнання KSTAR ESS — промислова акумуляторна станція" loading="lazy" width="800" height="600" id="equipPhoto">
                     <div class="equip__dim" id="equipDim"></div>
-                    <div class="equip__badge">KSTAR ESS</div>
+                    <div class="equip__badge" id="equipBadge" data-i18n="equipBadgeInd">Промислова ESS</div>
                     <div class="equip__zone equip__zone--inv" id="zoneInverter"></div>
                     <div class="equip__zone equip__zone--bat" id="zoneBattery"></div>
                 </div>
@@ -864,7 +904,7 @@
                     </div>
                     <div class="equip__spec">
                         <span class="equip__spec-label" data-i18n="equipSpecProtection">Захист</span>
-                        <span class="equip__spec-value">IP54</span>
+                        <span class="equip__spec-value" id="specProtection">IP54</span>
                     </div>
                     <div class="equip__spec">
                         <span class="equip__spec-label" data-i18n="equipSpecEfficiency">ККД інвертора</span>
@@ -872,7 +912,7 @@
                     </div>
                     <div class="equip__spec">
                         <span class="equip__spec-label" data-i18n="equipSpecCycles">Цикли</span>
-                        <span class="equip__spec-value">6000–8000</span>
+                        <span class="equip__spec-value" id="specCycles">6000–8000</span>
                     </div>
                     <div class="equip__spec">
                         <span class="equip__spec-label" data-i18n="equipSpecWarranty">Гарантія</span>
@@ -880,7 +920,7 @@
                     </div>
                     <div class="equip__spec">
                         <span class="equip__spec-label" data-i18n="equipSpecBattery">Тип батареї</span>
-                        <span class="equip__spec-value">EVE LFP (LiFePO₄)</span>
+                        <span class="equip__spec-value" id="specBatteryType">EVE LFP (LiFePO₄)</span>
                     </div>
                     <div class="equip__spec">
                         <span class="equip__spec-label" data-i18n="equipSpecPrice">Орієнтовна вартість</span>
@@ -1334,6 +1374,6 @@
     </div>
 </footer>
 
-<script src="js/app.m6.js"></script>
+<script src="js/app.m7.js"></script>
 </body>
 </html>
