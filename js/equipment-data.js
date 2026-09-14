@@ -40,7 +40,7 @@ window.UKRSTOR_EQUIPMENT = {
         batteryType: 'BluE-PACK5.1 LFP (LiFePO₄)',
         efficiency: '≥ 97.2%',
         images: {
-            inverter: 'images/kstar-e10kt.webp',
+            inverter: 'images/kstar-e10kt-black.jpg',
             battery: 'images/kstar-blue-pack-5-1.webp'
         },
         imageAlt: {
