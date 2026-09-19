@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const translations = {
         uk: {
-            navSolutions: 'Рішення', navCalculator: 'Калькулятор', navTechnology: 'Технологія',
+            navSolutions: 'Рішення', navCharging: 'Зарядки', navCalculator: 'Калькулятор', navTechnology: 'Технологія',
             navProjects: 'Проекти', navContacts: 'Контакти', navCta: 'Розрахувати',
             heroTitle: 'Системи накопичення<br>енергії для бізнесу<br>та побутових споживачів',
             heroSubtitle: 'Зниження витрат на електроенергію.<br>Резервне живлення бізнесу та дому.',
@@ -71,7 +71,24 @@ document.addEventListener('DOMContentLoaded', () => {
             equipSpecEfficiency: 'ККД інвертора',
             equipSpecCycles: 'Цикли', equipSpecWarranty: 'Гарантія', equipSpecWarrantyVal: '10 років',
             equipSpecBattery: 'Тип батареї', equipSpecPrice: 'Орієнтовна вартість',
-            equipPriceOnRequest: 'За індивідуальним розрахунком', equipBtn: 'Запросити специфікацію',
+            equipBtn: 'Запросити специфікацію',
+            equipBridgeKicker: 'Також ставимо',
+            equipBridgeTitle: 'DC-зарядні станції для авто',
+            equipBridgeMeta: 'KSTAR GreenFlow 120–480 кВт · окремо або разом з ESS',
+            chgKicker: 'KSTAR GreenFlow',
+            chgTitle: 'DC-зарядні станції для бізнесу',
+            chgSubtitle: 'Швидкі зарядки 120–480 кВт. Працюють окремо або в парі з ESS — заряд у дешеві години, дохід з першого дня.',
+            chgBadge: 'DC Fast Charge',
+            chgLead: 'Той самий KSTAR, що й у системах накопичення. Менше сервісних викликів, більше контрактів, швидша окупність.',
+            chgStat1: 'Потужність', chgStat2: 'Піковий ККД', chgStat3: 'Діапазон напруги', chgStat4: 'Модулі',
+            chgCta: 'Запросити специфікацію зарядки',
+            chgScene: 'Один зарядник — будь-який EV. Повна потужність на 400V і 800V.',
+            chg1h: 'Стабільні 96% ККД', chg1p: 'SiC-технологія знижує втрати енергії і витрати на електрику щороку.',
+            chg2h: '6 рівнів електробезпеки', chg2p: 'Страховики довіряють. Менше аварійних викликів на об’єкті.',
+            chg3h: 'Масштаб модулями', chg3p: 'Одна шафа, гнучкі модулі 30/40 кВт. Зростаєте разом із майданчиком.',
+            chg4h: 'Монтаж за години', chg4p: 'Готові підключати. Виручка з першого дня, без довгого простою майданчика.',
+            chg5h: 'Налаштування в одному додатку', chg5p: 'Запуск за хвилини. Без зайвої інженерії на місці.',
+            chg6h: 'Віддалений моніторинг', chg6p: 'Контроль станцій з будь-якої точки. Живі дані по парку.',
             integrationsTitle: 'Інтеграції', intSubtitle: 'Система працює з різними джерелами генерації',
             int1: 'Сонячні станції', int2: 'Вітрова генерація', int3: 'Газова генерація', int4: 'Гідро', int5: 'Дизель генератори',
             projectsTitle: 'Реалізовані проекти',
@@ -92,11 +109,11 @@ document.addEventListener('DOMContentLoaded', () => {
             contactAddr: 'м. Київ, Святошинський район, 03179, пр-т Берестейський (Перемоги), 131, приміщення 3',
             formTitle: 'Залишити заявку', formSubmit: 'Надіслати заявку',
             formName: 'Ваше ім\'я', formPhone: 'Телефон', formEmail: 'Email',
-            formInterest: 'Що вас цікавить?', formOpt1: 'Розрахунок економії', formOpt2: 'Консультація', formOpt3: 'Специфікація обладнання', formOpt4: 'Проект під ключ',
+            formInterest: 'Що вас цікавить?', formOpt1: 'Розрахунок економії', formOpt2: 'Консультація', formOpt3: 'Специфікація обладнання', formOpt4: 'Проект під ключ', formOpt5: 'DC-зарядні станції',
             formMsg: 'Повідомлення (необов\'язково)',
             blogTitle: 'Блог', blogSubtitle: 'Корисні матеріали про енергозбереження, ESS-технології та оптимізацію витрат',
             blogMore: 'Показати більше статей',
-            footerDesc: 'Офіційний дистриб\'ютор KSTAR в Україні.<br>Системи накопичення енергії для бізнесу.',
+            footerDesc: 'Офіційний дистриб\'ютор KSTAR в Україні.<br>Системи накопичення енергії та зарядні станції для бізнесу.',
             footerCopy: '&copy; 2025–2026 UKRSTORENERGY. Всі права захищено.',
             chatStatus: 'AI Енергетичний консультант', chatPlaceholder: 'Ваше питання...',
             chatWelcome1: 'Вітаю! Я AI енергетичний консультант UKRSTORENERGY. Можу:',
@@ -110,7 +127,7 @@ document.addEventListener('DOMContentLoaded', () => {
             notifyCta: 'Розрахувати'
         },
         en: {
-            navSolutions: 'Solutions', navCalculator: 'Calculator', navTechnology: 'Technology',
+            navSolutions: 'Solutions', navCharging: 'Charging', navCalculator: 'Calculator', navTechnology: 'Technology',
             navProjects: 'Projects', navContacts: 'Contacts', navCta: 'Request Calculation',
             heroTitle: 'Energy Storage Systems<br>for Business<br>and Homes',
             heroSubtitle: 'Reduce energy costs.<br>Backup power for business and homes.',
@@ -172,6 +189,23 @@ document.addEventListener('DOMContentLoaded', () => {
             equipSpecCycles: 'Cycles', equipSpecWarranty: 'Warranty', equipSpecWarrantyVal: '10 years',
             equipSpecBattery: 'Battery type', equipSpecPrice: 'Estimated cost',
             equipPriceOnRequest: 'Priced individually', equipBtn: 'Request specification',
+            equipBridgeKicker: 'We also install',
+            equipBridgeTitle: 'DC chargers for EVs',
+            equipBridgeMeta: 'KSTAR GreenFlow 120–480 kW · standalone or with ESS',
+            chgKicker: 'KSTAR GreenFlow',
+            chgTitle: 'DC charging stations for business',
+            chgSubtitle: 'Fast chargers from 120 to 480 kW. Standalone or paired with ESS — charge off-peak, earn from day one.',
+            chgBadge: 'DC Fast Charge',
+            chgLead: 'The same KSTAR as in our storage systems. Fewer callbacks, more contracts, faster payback.',
+            chgStat1: 'Power', chgStat2: 'Peak efficiency', chgStat3: 'Voltage range', chgStat4: 'Modules',
+            chgCta: 'Request charger specification',
+            chgScene: 'One charger, every EV. Full power on 400V and 800V models.',
+            chg1h: 'Stable 96% efficiency', chg1p: 'SiC technology cuts energy loss and saves on electricity every year.',
+            chg2h: '6-layer electrical safety', chg2p: 'Insurers trust it. Fewer emergency calls on site.',
+            chg3h: 'Scale with modules', chg3p: 'One cabinet, flexible 30/40 kW modules. Grow with the site.',
+            chg4h: 'Installed in hours', chg4p: 'Ready to connect. Revenue from day one, without long site downtime.',
+            chg5h: 'Smart setup, one app', chg5p: 'Go live in minutes without extra on-site engineering.',
+            chg6h: 'Remote O&M', chg6p: 'Stay in control from anywhere with live fleet data.',
             integrationsTitle: 'Integrations', intSubtitle: 'The system works with various generation sources',
             int1: 'Solar plants', int2: 'Wind generation', int3: 'Gas generation', int4: 'Hydro', int5: 'Diesel generators',
             projectsTitle: 'Completed projects',
@@ -192,11 +226,11 @@ document.addEventListener('DOMContentLoaded', () => {
             contactAddr: 'Kyiv, Sviatoshynskyi district, 03179, Beresteyskyi (Peremohy) Ave, 131, premises 3',
             formTitle: 'Submit a request', formSubmit: 'Send request',
             formName: 'Your name', formPhone: 'Phone', formEmail: 'Email',
-            formInterest: 'What are you interested in?', formOpt1: 'Savings calculation', formOpt2: 'Consultation', formOpt3: 'Equipment specification', formOpt4: 'Turnkey project',
+            formInterest: 'What are you interested in?', formOpt1: 'Savings calculation', formOpt2: 'Consultation', formOpt3: 'Equipment specification', formOpt4: 'Turnkey project', formOpt5: 'DC charging stations',
             formMsg: 'Message (optional)',
             blogTitle: 'Blog', blogSubtitle: 'Useful materials about energy saving, ESS technologies, and cost optimization',
             blogMore: 'Show more articles',
-            footerDesc: 'Official KSTAR distributor in Ukraine.<br>Energy storage systems for business.',
+            footerDesc: 'Official KSTAR distributor in Ukraine.<br>Energy storage systems and EV chargers for business.',
             footerCopy: '&copy; 2025–2026 UKRSTORENERGY. All rights reserved.',
             chatStatus: 'AI Energy Consultant', chatPlaceholder: 'Your question...',
             chatWelcome1: 'Hello! I\'m the AI energy consultant at UKRSTORENERGY. I can:',
@@ -959,6 +993,13 @@ document.addEventListener('DOMContentLoaded', () => {
             btn.disabled = false;
             form.reset();
         }, 3000);
+    });
+
+    document.querySelectorAll('.js-charging-cta').forEach((link) => {
+        link.addEventListener('click', () => {
+            const interest = form.querySelector('select[name="interest"]');
+            if (interest) interest.value = 'charging';
+        });
     });
     } // end if (form)
 
