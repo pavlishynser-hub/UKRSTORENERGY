@@ -254,6 +254,10 @@ img { max-width: 100%; display: block; }
     gap: 36px;
 }
 
+@media (min-width: 769px) {
+    .nav__link--more { display: none; }
+}
+
 .nav__link {
     font-size: 1.05rem;
     font-weight: 600;
@@ -4127,3 +4131,253 @@ img { max-width: 100%; display: block; }
     background: rgba(255, 255, 255, 0.1);
     color: var(--text);
 }
+
+/* ========================================
+   ABOUT / FOUNDER
+   ======================================== */
+
+.about {
+    background: var(--bg);
+    padding-top: 88px;
+    padding-bottom: 72px;
+}
+
+.about__layout {
+    display: grid;
+    gap: 28px;
+}
+
+.about__kicker {
+    margin: 0 0 14px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+}
+
+.about__title {
+    margin: 0 0 16px;
+    max-width: 14ch;
+    font-size: clamp(2rem, 4.4vw, 3.35rem);
+    font-weight: 600;
+    line-height: 1.08;
+    letter-spacing: -0.035em;
+    color: var(--white);
+}
+
+.about__lead {
+    margin: 0;
+    max-width: 36em;
+    font-size: 1.05rem;
+    line-height: 1.5;
+    color: var(--text-muted);
+}
+
+.about__skills {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+    margin: 8px 0 0;
+    padding: 0;
+    list-style: none;
+}
+
+.about__skills li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    text-align: center;
+    font-size: 0.92rem;
+    font-weight: 500;
+    line-height: 1.25;
+    color: var(--text);
+}
+
+.about__skill-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: rgba(74, 157, 91, 0.08);
+    color: var(--accent);
+}
+
+.about__founder {
+    min-width: 0;
+}
+
+.about__photo {
+    margin: 0 0 22px;
+    overflow: hidden;
+    border-radius: 28px;
+    background: #111118;
+}
+
+.about__photo img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 3 / 2;
+    max-height: 340px;
+    object-fit: cover;
+    object-position: 62% 28%;
+}
+
+.about__name {
+    margin: 0 0 8px;
+    font-size: clamp(1.7rem, 3vw, 2.15rem);
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    color: var(--white);
+}
+
+.about__role {
+    margin: 0 0 22px;
+    font-size: 0.98rem;
+    line-height: 1.4;
+    color: var(--text-muted);
+}
+
+.about__stat {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin: 0;
+    max-width: 18em;
+    font-size: 0.95rem;
+    line-height: 1.35;
+    color: var(--text-muted);
+}
+
+.about__stat strong {
+    flex-shrink: 0;
+    padding-right: 16px;
+    border-right: 1px solid rgba(255, 255, 255, 0.12);
+    font-size: 2.4rem;
+    font-weight: 600;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    color: var(--accent);
+}
+
+.about__quote {
+    position: relative;
+    margin: 8px 0 0;
+    padding: 8px 0 0 52px;
+}
+
+.about__quote::before {
+    content: '“';
+    position: absolute;
+    top: -18px;
+    left: 0;
+    font-size: 4.4rem;
+    font-weight: 600;
+    line-height: 1;
+    color: var(--accent);
+}
+
+.about__quote p {
+    margin: 0 0 16px;
+    font-size: 1.02rem;
+    line-height: 1.55;
+    color: var(--text-muted);
+}
+
+.about__quote p:last-child { margin-bottom: 0; }
+
+.about__partner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    margin-top: 36px;
+    padding: 22px 26px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 28px;
+    background: #101018;
+}
+
+.about__partner-text {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin: 0;
+    max-width: 46em;
+    font-size: 0.98rem;
+    line-height: 1.45;
+    color: var(--text);
+}
+
+.about__partner-icon {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(74, 157, 91, 0.1);
+    color: var(--accent);
+}
+
+.about__cta {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 52px;
+    padding: 0 26px;
+    border-radius: 999px;
+    background: var(--accent);
+    color: var(--white);
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background var(--transition), box-shadow var(--transition);
+}
+
+.about__cta:hover {
+    background: var(--accent-hover);
+    box-shadow: 0 6px 22px rgba(74, 157, 91, 0.22);
+}
+
+@media (min-width: 960px) {
+    .about__layout {
+        grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.85fr);
+        grid-template-areas:
+            "head founder"
+            "skills founder"
+            "quote founder";
+        column-gap: 56px;
+        row-gap: 28px;
+        align-items: start;
+    }
+    .about__head { grid-area: head; }
+    .about__skills { grid-area: skills; justify-self: start; max-width: 460px; }
+    .about__quote { grid-area: quote; max-width: 36em; }
+    .about__founder { grid-area: founder; }
+    .about__skills li { align-items: flex-start; text-align: left; }
+    .about__photo img { max-height: 320px; }
+}
+
+@media (max-width: 959px) {
+    .about { padding: 48px 0 40px; }
+    .about__title { max-width: none; }
+    .about__skills { margin-top: 8px; }
+    .about__quote { padding-left: 0; }
+    .about__quote::before { display: none; }
+    .about__partner {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 20px 18px 18px;
+        border-radius: 24px;
+    }
+    .about__partner-text { align-items: flex-start; }
+    .about__cta { width: 100%; }
+}
+
