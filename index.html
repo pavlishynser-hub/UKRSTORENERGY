@@ -17,9 +17,15 @@
     <script>
     (function () {
         try {
+            if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+            var navs = performance.getEntriesByType && performance.getEntriesByType('navigation');
+            var nav = navs && navs[0];
+            if (nav && nav.type === 'reload' && location.hash) {
+                history.replaceState(null, '', location.pathname + location.search);
+            }
             var q = (new URLSearchParams(location.search).get('lang') || '').toLowerCase();
             var stored = '';
-            try { stored = localStorage.getItem('use-lang') || ''; } catch (e) {}
+            try { stored = localStorage.getItem('use-lang') || ''; } catch (e2) {}
             if (q === 'en' || (!q && stored === 'en')) {
                 document.documentElement.lang = 'en';
                 document.title = 'UKRSTORENERGY SOLUTIONS — BESS platform in Ukraine | Projects, delivery, partnerships';
@@ -60,7 +66,7 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <link rel="preload" as="video" href="videos/hero-mobile-v3.mp4" media="(max-width: 768px)">
-    <link rel="stylesheet" href="css/app.m16.css?v=17">
+    <link rel="stylesheet" href="css/app.m16.css?v=18">
     <style>
     @media (max-width: 768px), (max-device-width: 500px) {
         .hero, .hero-page { min-height: 0 !important; height: auto !important; }
@@ -1754,6 +1760,6 @@
 </footer>
 
 <script src="js/equipment-data.js"></script>
-<script src="js/app.m16.js?v=17"></script>
+<script src="js/app.m16.js?v=18"></script>
 </body>
 </html>

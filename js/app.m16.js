@@ -325,8 +325,36 @@ document.addEventListener('DOMContentLoaded', () => {
             const url = new URL(window.location.href);
             if (lang === 'en') url.searchParams.set('lang', 'en');
             else url.searchParams.delete('lang');
-            history.replaceState(null, '', url.pathname + url.search + url.hash);
+            const next = url.pathname + url.search + url.hash;
+            const current = window.location.pathname + window.location.search + window.location.hash;
+            if (next !== current) history.replaceState(null, '', next);
         } catch (e) { /* ignore */ }
+    }
+
+    function isReloadNavigation() {
+        try {
+            const nav = performance.getEntriesByType && performance.getEntriesByType('navigation')[0];
+            return !!(nav && nav.type === 'reload');
+        } catch (e) {
+            return false;
+        }
+    }
+
+    function applyEntryScroll() {
+        if (isReloadNavigation()) {
+            if (location.hash) history.replaceState(null, '', location.pathname + location.search);
+            window.scrollTo(0, 0);
+            return;
+        }
+        const id = (location.hash || '').replace(/^#/, '');
+        if (id && id !== 'hero') {
+            const el = document.getElementById(id);
+            if (el) {
+                el.scrollIntoView({ behavior: 'auto', block: 'start' });
+                return;
+            }
+        }
+        window.scrollTo(0, 0);
     }
 
     function setLanguage(lang) {
@@ -433,6 +461,11 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
     setLanguage(readLang());
+    applyEntryScroll();
+    window.addEventListener('load', applyEntryScroll);
+    window.addEventListener('pageshow', (e) => {
+        if (e.persisted) applyEntryScroll();
+    });
 
     // ========================================
     // STICKY HEADER — shows after scrolling past hero
