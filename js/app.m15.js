@@ -120,9 +120,22 @@ document.addEventListener('DOMContentLoaded', () => {
             contactsTitle: 'Контакти', contactPhone: 'Телефон', contactEmail: 'Email', contactAddress: 'Адреса',
             contactAddr: 'м. Київ, Святошинський район, 03179, пр-т Берестейський (Перемоги), 131, приміщення 3',
             formTitle: 'Залишити заявку', formSubmit: 'Надіслати заявку',
-            formName: 'Ваше ім\'я', formPhone: 'Телефон', formEmail: 'Email',
+            formName: 'Ім\'я', formCompany: 'Компанія', formPhone: 'Телефон', formEmail: 'Email',
             formInterest: 'Що вас цікавить?', formOpt1: 'Розрахунок економії', formOpt2: 'Консультація', formOpt3: 'Специфікація обладнання', formOpt4: 'Проект під ключ', formOpt5: 'DC-зарядні станції',
-            formMsg: 'Повідомлення (необов\'язково)',
+            formOptPartnership: 'Стратегічне партнерство',
+            formMsg: 'Повідомлення (необов\'язково)', formMsgRequired: 'Повідомлення',
+            partnershipKicker: 'Інвестиції та стратегічне партнерство',
+            partnershipTitle: 'Будуємо ринок систем накопичення <span class="partnership__accent">енергії</span> в Україні',
+            partnershipLead: '<strong>UKRSTORENERGY SOLUTIONS</strong> відкрита до співпраці зі стратегічними інвесторами та технологічними партнерами, готовими інвестувати у розвиток BESS-бізнесу в Україні.',
+            partnershipPlatform: 'Локальна платформа',
+            partnershipPlatformNote: 'Від розвитку проєкту до сервісу',
+            partnershipStep1h: 'Розвиток проєктів', partnershipStep1p: 'Робота з клієнтами',
+            partnershipStep2h: 'Технічна інтеграція', partnershipStep2p: 'Монтаж та commissioning',
+            partnershipStep3h: 'Сервіс', partnershipStep3p: 'Розвиток інфраструктури',
+            partnershipCardKicker: 'Відкриті до партнерства',
+            partnershipCardText: 'Ми шукаємо партнерів, готових не просто постачати обладнання, а <strong>будувати бізнес в Україні разом з нами</strong>.',
+            partnershipCta: 'Обговорити партнерство →',
+            partnershipCardNote: 'Для інвесторів і технологічних партнерів',
             blogTitle: 'Блог', blogSubtitle: 'Корисні матеріали про енергозбереження, ESS-технології та оптимізацію витрат',
             blogMore: 'Показати більше статей',
             footerDesc: 'Офіційний дистриб\'ютор KSTAR в Україні.<br>Системи накопичення енергії та зарядні станції для бізнесу.',
@@ -249,9 +262,22 @@ document.addEventListener('DOMContentLoaded', () => {
             contactsTitle: 'Contacts', contactPhone: 'Phone', contactEmail: 'Email', contactAddress: 'Address',
             contactAddr: 'Kyiv, Sviatoshynskyi district, 03179, Beresteyskyi (Peremohy) Ave, 131, premises 3',
             formTitle: 'Submit a request', formSubmit: 'Send request',
-            formName: 'Your name', formPhone: 'Phone', formEmail: 'Email',
+            formName: 'Name', formCompany: 'Company', formPhone: 'Phone', formEmail: 'Email',
             formInterest: 'What are you interested in?', formOpt1: 'Savings calculation', formOpt2: 'Consultation', formOpt3: 'Equipment specification', formOpt4: 'Turnkey project', formOpt5: 'DC charging stations',
-            formMsg: 'Message (optional)',
+            formOptPartnership: 'Strategic partnership',
+            formMsg: 'Message (optional)', formMsgRequired: 'Message',
+            partnershipKicker: 'Investment and strategic partnership',
+            partnershipTitle: 'Building the <span class="partnership__accent">energy</span> storage market in Ukraine',
+            partnershipLead: '<strong>UKRSTORENERGY SOLUTIONS</strong> is open to cooperation with strategic investors and technology partners ready to invest in BESS business in Ukraine.',
+            partnershipPlatform: 'Local platform',
+            partnershipPlatformNote: 'From project development to service',
+            partnershipStep1h: 'Project development', partnershipStep1p: 'Working with clients',
+            partnershipStep2h: 'Technical integration', partnershipStep2p: 'Installation and commissioning',
+            partnershipStep3h: 'Service', partnershipStep3p: 'Infrastructure development',
+            partnershipCardKicker: 'Open to partnership',
+            partnershipCardText: 'We are looking for partners ready not only to supply equipment, but to <strong>build business in Ukraine together with us</strong>.',
+            partnershipCta: 'Discuss partnership →',
+            partnershipCardNote: 'For investors and technology partners',
             blogTitle: 'Blog', blogSubtitle: 'Useful materials about energy saving, ESS technologies, and cost optimization',
             blogMore: 'Show more articles',
             footerDesc: 'Official KSTAR distributor in Ukraine.<br>Energy storage systems and EV chargers for business.',
@@ -285,6 +311,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 el.innerHTML = t[key];
             }
         });
+        const partnerForm = document.getElementById('contactForm');
+        if (partnerForm && partnerForm.classList.contains('contacts__form--partnership') && t.formMsgRequired) {
+            const msg = partnerForm.querySelector('textarea[name="message"]');
+            if (msg) msg.placeholder = t.formMsgRequired;
+        }
         document.documentElement.lang = lang === 'uk' ? 'uk' : 'en';
         document.querySelectorAll('.lang-switch__btn').forEach(btn => {
             btn.classList.toggle('lang-switch__btn--active', btn.dataset.lang === lang);
@@ -1003,6 +1034,31 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const form = document.getElementById('contactForm');
     if (form) {
+    const emailField = form.querySelector('input[name="email"]');
+    const messageField = form.querySelector('textarea[name="message"]');
+    const sourceField = form.querySelector('input[name="source"]');
+    const interestField = form.querySelector('select[name="interest"]');
+
+    function setPartnershipMode(on) {
+        const t = translations[currentLang] || translations.uk;
+        if (emailField) emailField.required = on;
+        if (messageField) {
+            messageField.required = on;
+            const key = on ? 'formMsgRequired' : 'formMsg';
+            if (t[key]) messageField.placeholder = t[key];
+        }
+        if (sourceField) sourceField.value = on ? 'partnership' : '';
+        form.classList.toggle('contacts__form--partnership', on);
+    }
+
+    function openPartnershipForm() {
+        setPartnershipMode(true);
+        if (interestField) interestField.value = 'partnership';
+        form.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        const nameField = form.querySelector('input[name="name"]');
+        window.setTimeout(() => { if (nameField) nameField.focus(); }, 400);
+    }
+
     form.addEventListener('submit', (e) => {
         e.preventDefault();
         const btn = form.querySelector('.btn');
@@ -1016,15 +1072,29 @@ document.addEventListener('DOMContentLoaded', () => {
             btn.style.background = '';
             btn.disabled = false;
             form.reset();
+            setPartnershipMode(false);
         }, 3000);
     });
 
     document.querySelectorAll('.js-charging-cta').forEach((link) => {
         link.addEventListener('click', () => {
-            const interest = form.querySelector('select[name="interest"]');
-            if (interest) interest.value = 'charging';
+            setPartnershipMode(false);
+            if (interestField) interestField.value = 'charging';
         });
     });
+
+    document.querySelectorAll('.js-partnership-cta').forEach((link) => {
+        link.addEventListener('click', (event) => {
+            event.preventDefault();
+            openPartnershipForm();
+        });
+    });
+
+    if (interestField) {
+        interestField.addEventListener('change', () => {
+            setPartnershipMode(interestField.value === 'partnership');
+        });
+    }
     } // end if (form)
 
     // ========================================

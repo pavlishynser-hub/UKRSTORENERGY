@@ -1295,7 +1295,62 @@
     </div>
 </section>
 
-<!-- 11. TARGET AUDIENCE -->
+<!-- 12. PARTNERSHIP -->
+<section class="section partnership" id="partnership">
+    <div class="container">
+        <p class="partnership__kicker" data-i18n="partnershipKicker">Інвестиції та стратегічне партнерство</p>
+        <h2 class="partnership__title" data-i18n="partnershipTitle">Будуємо ринок систем накопичення <span class="partnership__accent">енергії</span> в Україні</h2>
+
+        <figure class="partnership__visual">
+            <img src="images/bess-partnership.jpg" alt="Ілюстрація систем накопичення енергії BESS" width="1024" height="409" loading="lazy">
+        </figure>
+
+        <div class="partnership__body">
+            <p class="partnership__lead" data-i18n="partnershipLead"><strong>UKRSTORENERGY SOLUTIONS</strong> відкрита до співпраці зі стратегічними інвесторами та технологічними партнерами, готовими інвестувати у розвиток BESS-бізнесу в Україні.</p>
+
+            <div class="partnership__platform">
+                <h3 class="partnership__platform-title" data-i18n="partnershipPlatform">Локальна платформа</h3>
+                <p class="partnership__platform-note" data-i18n="partnershipPlatformNote">Від розвитку проєкту до сервісу</p>
+                <ol class="partnership__steps">
+                    <li>
+                        <span class="partnership__step-num" aria-hidden="true">01</span>
+                        <div>
+                            <strong data-i18n="partnershipStep1h">Розвиток проєктів</strong>
+                            <span data-i18n="partnershipStep1p">Робота з клієнтами</span>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="partnership__step-num" aria-hidden="true">02</span>
+                        <div>
+                            <strong data-i18n="partnershipStep2h">Технічна інтеграція</strong>
+                            <span data-i18n="partnershipStep2p">Монтаж та commissioning</span>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="partnership__step-num" aria-hidden="true">03</span>
+                        <div>
+                            <strong data-i18n="partnershipStep3h">Сервіс</strong>
+                            <span data-i18n="partnershipStep3p">Розвиток інфраструктури</span>
+                        </div>
+                    </li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="partnership__card">
+            <p class="partnership__card-kicker" data-i18n="partnershipCardKicker">Відкриті до партнерства</p>
+            <div class="partnership__card-row">
+                <p class="partnership__card-text" data-i18n="partnershipCardText">Ми шукаємо партнерів, готових не просто постачати обладнання, а <strong>будувати бізнес в Україні разом з нами</strong>.</p>
+                <div class="partnership__card-action">
+                    <a href="#contacts" class="partnership__btn js-partnership-cta" data-i18n="partnershipCta">Обговорити партнерство →</a>
+                    <p class="partnership__card-note" data-i18n="partnershipCardNote">Для інвесторів і технологічних партнерів</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 13. TARGET AUDIENCE -->
 <section class="section audience">
     <div class="container">
         <h2 class="section__title fade-up" data-i18n="audienceTitle">Для кого це рішення</h2>
@@ -1497,9 +1552,11 @@
             </div>
             <form class="contacts__form fade-up" id="contactForm">
                 <h3 data-i18n="formTitle">Залишити заявку</h3>
-                <input type="text" name="name" placeholder="Ваше ім'я" required data-i18n="formName">
-                <input type="tel" name="phone" placeholder="Телефон" required data-i18n="formPhone">
-                <input type="email" name="email" placeholder="Email" data-i18n="formEmail">
+                <input type="hidden" name="source" value="">
+                <input type="text" name="name" placeholder="Ваше ім'я" required autocomplete="name" data-i18n="formName">
+                <input type="text" name="company" placeholder="Компанія" autocomplete="organization" data-i18n="formCompany">
+                <input type="tel" name="phone" placeholder="Телефон" required autocomplete="tel" data-i18n="formPhone">
+                <input type="email" name="email" placeholder="Email" autocomplete="email" data-i18n="formEmail">
                 <select name="interest">
                     <option value="" disabled selected data-i18n="formInterest">Що вас цікавить?</option>
                     <option value="calculation" data-i18n="formOpt1">Розрахунок економії</option>
@@ -1507,6 +1564,7 @@
                     <option value="specification" data-i18n="formOpt3">Специфікація обладнання</option>
                     <option value="charging" data-i18n="formOpt5">DC-зарядні станції</option>
                     <option value="project" data-i18n="formOpt4">Проект під ключ</option>
+                    <option value="partnership" data-i18n="formOptPartnership">Стратегічне партнерство</option>
                 </select>
                 <textarea name="message" placeholder="Повідомлення (необов'язково)" rows="3" data-i18n="formMsg"></textarea>
                 <button type="submit" class="btn btn--primary btn--full" data-i18n="formSubmit">Надіслати заявку</button>
