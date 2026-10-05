@@ -65,8 +65,8 @@
     <link rel="preload" as="image" href="images/IMG_2591.PNG" media="(min-width: 769px)">
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
-    <link rel="preload" as="video" href="videos/hero-mobile-v3.mp4" media="(max-width: 768px)">
-    <link rel="stylesheet" href="css/app.m16.css?v=18">
+    <link rel="preload" as="video" href="videos/hero-v4.mp4">
+    <link rel="stylesheet" href="css/app.m16.css?v=19">
     <style>
     @media (max-width: 768px), (max-device-width: 500px) {
         .hero, .hero-page { min-height: 0 !important; height: auto !important; }
@@ -83,7 +83,7 @@
         .hero__video::-webkit-media-controls,
         .hero__video::-webkit-media-controls-start-playback-button,
         .hero__video::-webkit-media-controls-overlay-play-button { display: none !important; -webkit-appearance: none; }
-        .hero__bg { position: relative !important; inset: auto !important; width: 100% !important; height: 280px !important; min-height: 0 !important; max-height: 300px !important; }
+        .hero__bg { position: relative !important; inset: auto !important; width: 100% !important; height: auto !important; min-height: 200px !important; max-height: none !important; aspect-ratio: 16 / 9 !important; }
         .hero__bg video { position: absolute !important; inset: 0 !important; width: 100% !important; height: 100% !important; object-fit: cover !important; pointer-events: none !important; }
         .hero__overlay--left, .hero__overlay--top, .hero__overlay--bottom { background: none !important; }
         .hero__body { margin-top: -32px !important; padding: 20px 20px 0 !important; flex: 0 0 auto !important; background: #090911 !important; border-radius: 28px 28px 0 0 !important; position: relative !important; z-index: 2 !important; }
@@ -103,7 +103,6 @@
     }
     @media (max-width: 400px), (max-device-width: 400px) {
         .hero__title { font-size: 28px !important; }
-        .hero__bg { height: 250px !important; max-height: 270px !important; }
     }
     </style>
 
@@ -369,10 +368,10 @@
         <!-- Background video + static poster/fallback + overlay layers -->
         <div class="hero__bg" id="heroBg">
             <img class="hero__poster" src="images/IMG_2591.PNG" alt="" width="1536" height="1024" decoding="async">
-            <video class="hero__video hero__video--desktop is-active" src="videos/hero-v3.mp4" autoplay muted playsinline webkit-playsinline preload="auto"></video>
-            <video class="hero__video hero__video--desktop" src="videos/hero-2.mp4" muted playsinline webkit-playsinline preload="auto"></video>
-            <video class="hero__video hero__video--mobile is-active" src="videos/hero-mobile-v3.mp4" autoplay muted playsinline webkit-playsinline preload="auto"></video>
-            <video class="hero__video hero__video--mobile" src="videos/hero-2.mp4" muted playsinline webkit-playsinline preload="auto"></video>
+            <video class="hero__video hero__video--desktop is-active" src="videos/hero-v4.mp4" muted playsinline webkit-playsinline preload="auto"></video>
+            <video class="hero__video hero__video--desktop" src="videos/hero-2-36.mp4" muted playsinline webkit-playsinline preload="metadata"></video>
+            <video class="hero__video hero__video--mobile is-active" src="videos/hero-v4.mp4" muted playsinline webkit-playsinline preload="auto"></video>
+            <video class="hero__video hero__video--mobile" src="videos/hero-2-36.mp4" muted playsinline webkit-playsinline preload="metadata"></video>
             <img class="hero__video-mask" src="images/hero-frame-v2.jpg" alt="" width="640" height="350" aria-hidden="true">
             <div class="hero__overlay hero__overlay--left"></div>
             <div class="hero__overlay hero__overlay--top"></div>
@@ -383,6 +382,7 @@
             if (window.__heroPlaylistReady) return;
             window.__heroPlaylistReady = true;
             var bg = document.getElementById('heroBg');
+            var mobileMq = window.matchMedia('(max-width: 768px)');
 
             function prepare(video) {
                 video.muted = true;
@@ -390,15 +390,13 @@
                 video.loop = false;
                 video.controls = false;
                 video.playsInline = true;
+                video.disablePictureInPicture = true;
                 video.setAttribute('playsinline', '');
                 video.setAttribute('webkit-playsinline', 'true');
+                video.setAttribute('muted', '');
                 video.removeAttribute('loop');
                 video.removeAttribute('controls');
-                video.removeAttribute('poster');
-            }
-
-            function isMobileView() {
-                return window.matchMedia('(max-width: 768px), (max-device-width: 500px)').matches;
+                video.removeAttribute('autoplay');
             }
 
             function setupGroup(selector) {
@@ -407,7 +405,7 @@
                 var index = 0;
                 var advancing = false;
 
-                function playIndex(nextIndex, rewind) {
+                function playIndex(nextIndex) {
                     clips.forEach(function (clip, i) {
                         if (i === nextIndex) {
                             clip.classList.add('is-active');
@@ -420,23 +418,15 @@
                     index = nextIndex;
                     var current = clips[index];
                     prepare(current);
-                    function start() {
-                        var p = current.play();
-                        if (p && p.catch) p.catch(function () {});
-                    }
-                    if (rewind && current.currentTime > 0.25) {
-                        current.addEventListener('seeked', start, { once: true });
-                        try { current.currentTime = 0; } catch (e) { start(); }
-                    } else {
-                        start();
-                    }
+                    var p = current.play();
+                    if (p && p.catch) p.catch(function () {});
                 }
 
                 function advance() {
                     if (advancing) return;
                     advancing = true;
-                    playIndex((index + 1) % clips.length, true);
-                    setTimeout(function () { advancing = false; }, 400);
+                    playIndex((index + 1) % clips.length);
+                    setTimeout(function () { advancing = false; }, 600);
                 }
 
                 clips.forEach(function (video, i) {
@@ -449,27 +439,40 @@
                     video.addEventListener('ended', function () {
                         if (clips[index] === video) advance();
                     });
-                    video.addEventListener('timeupdate', function () {
-                        if (clips[index] !== video) return;
-                        if (!video.duration || !isFinite(video.duration) || video.duration < 1) return;
-                        if (video.currentTime < 0.5) return;
-                        if (video.currentTime >= video.duration - 0.2) advance();
-                    });
                 });
 
                 return {
-                    play: function () { playIndex(index, false); },
+                    play: function () { playIndex(index); },
+                    resume: function () {
+                        var current = clips[index];
+                        if (!current) return;
+                        current.classList.add('is-active');
+                        prepare(current);
+                        var p = current.play();
+                        if (p && p.catch) p.catch(function () {});
+                    },
                     pauseAll: function () {
-                        clips.forEach(function (clip) { clip.pause(); });
+                        clips.forEach(function (clip) {
+                            clip.pause();
+                            clip.classList.remove('is-active');
+                        });
                     }
                 };
             }
 
             var desktop = setupGroup('.hero__video--desktop');
             var mobile = setupGroup('.hero__video--mobile');
+            var usingMobile = null;
 
             function playActiveGroup() {
-                if (isMobileView()) {
+                var nextMobile = mobileMq.matches;
+                if (usingMobile === nextMobile) {
+                    if (nextMobile) { if (mobile) mobile.resume(); }
+                    else { if (desktop) desktop.resume(); }
+                    return;
+                }
+                usingMobile = nextMobile;
+                if (nextMobile) {
                     if (desktop) desktop.pauseAll();
                     if (mobile) mobile.play();
                 } else {
@@ -479,6 +482,9 @@
             }
 
             playActiveGroup();
+            if (mobileMq.addEventListener) mobileMq.addEventListener('change', playActiveGroup);
+            else if (mobileMq.addListener) mobileMq.addListener(playActiveGroup);
+            window.addEventListener('resize', playActiveGroup);
             document.addEventListener('touchstart', playActiveGroup, { once: true, passive: true });
             document.addEventListener('visibilitychange', function () {
                 if (!document.hidden) playActiveGroup();
@@ -1760,6 +1766,6 @@
 </footer>
 
 <script src="js/equipment-data.js"></script>
-<script src="js/app.m16.js?v=18"></script>
+<script src="js/app.m16.js?v=19"></script>
 </body>
 </html>
