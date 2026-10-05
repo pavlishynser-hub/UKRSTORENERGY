@@ -60,7 +60,7 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <link rel="preload" as="video" href="videos/hero-mobile-v3.mp4" media="(max-width: 768px)">
-    <link rel="stylesheet" href="css/app.m16.css">
+    <link rel="stylesheet" href="css/app.m16.css?v=17">
     <style>
     @media (max-width: 768px), (max-device-width: 500px) {
         .hero, .hero-page { min-height: 0 !important; height: auto !important; }
@@ -86,7 +86,8 @@
         .hero-audience, .hero-mobile-cta, .hero-links { display: flex !important; }
         .hero .fade-up { opacity: 1 !important; transform: none !important; }
         .hero__title { font-size: 30px !important; line-height: 1.16 !important; font-weight: 600 !important; margin: 22px 0 10px !important; }
-        .hero__subtitle { font-size: 16px !important; line-height: 1.45 !important; margin-bottom: 22px !important; }
+        .hero__subtitle { font-size: 16px !important; line-height: 1.45 !important; margin-bottom: 8px !important; }
+        .hero__line { font-size: 13px !important; line-height: 1.45 !important; color: rgba(255, 255, 255, 0.38) !important; margin: 0 0 18px !important; max-width: none !important; }
         .hero-page__scroll { display: none !important; }
         .site-notify { display: none !important; }
         .pain.section { padding: 20px 0 48px !important; }
@@ -495,6 +496,7 @@
                 </div>
                 <h1 class="hero__title fade-up" data-i18n="heroTitle">Системи накопичення<br>енергії для бізнесу<br>та побутових споживачів</h1>
                 <p class="hero__subtitle fade-up" data-i18n="heroSubtitle">Зниження витрат на електроенергію.<br>Резервне живлення бізнесу та дому.</p>
+                <p class="hero__line fade-up" data-i18n="heroLine">Розробка та реалізація BESS-проєктів • EPC • сервіс • стратегічне партнерство</p>
                 <div class="hero__actions hero__actions--desktop fade-up">
                     <a href="#calculator" class="btn btn--accent btn--lg" data-i18n="heroBtn1">Розрахувати економію</a>
                     <a href="#contacts" class="btn btn--ghost btn--lg" data-i18n="heroBtn2">Отримати консультацію</a>
@@ -1720,7 +1722,12 @@
                 <img class="logo__mark" src="images/logo-mark.png" alt="UKRSTORENERGY Solutions" width="512" height="234">
                 <img class="logo__wordmark" src="images/ukrstorenergy-solutions-wordmark.webp" alt="" width="1601" height="210" aria-hidden="true">
             </a>
-            <p data-i18n="footerDesc">Офіційний дистриб'ютор KSTAR в Україні.<br>Системи накопичення енергії та зарядні станції для бізнесу.</p>
+            <div class="footer__about">
+                <p class="footer__name" data-i18n="footerName">UKRSTORENERGY SOLUTIONS</p>
+                <p class="footer__desc" data-i18n="footerDesc">Українська компанія з розробки та реалізації систем накопичення енергії.</p>
+                <p class="footer__scope" data-i18n="footerScope">BESS • ESS • EPC • Service &amp; O&amp;M • Project Development</p>
+                <p class="footer__partner" data-i18n="footerPartner">Офіційний дистриб’ютор KSTAR в Україні</p>
+            </div>
         </div>
         <div class="footer__nav">
             <a href="#equipment" data-i18n="navSolutions">Рішення</a>
@@ -1747,6 +1754,6 @@
 </footer>
 
 <script src="js/equipment-data.js"></script>
-<script src="js/app.m16.js"></script>
+<script src="js/app.m16.js?v=17"></script>
 </body>
 </html>
