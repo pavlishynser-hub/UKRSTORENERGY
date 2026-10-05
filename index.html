@@ -12,7 +12,21 @@
     <meta name="geo.placename" content="Kyiv, Ukraine">
     <link rel="canonical" href="https://use.net.ua/">
     <link rel="alternate" hreflang="uk" href="https://use.net.ua/">
+    <link rel="alternate" hreflang="en" href="https://use.net.ua/?lang=en">
     <link rel="alternate" hreflang="x-default" href="https://use.net.ua/">
+    <script>
+    (function () {
+        try {
+            var q = (new URLSearchParams(location.search).get('lang') || '').toLowerCase();
+            var stored = '';
+            try { stored = localStorage.getItem('use-lang') || ''; } catch (e) {}
+            if (q === 'en' || (!q && stored === 'en')) {
+                document.documentElement.lang = 'en';
+                document.title = 'UKRSTORENERGY SOLUTIONS — BESS platform in Ukraine | Projects, delivery, partnerships';
+            }
+        } catch (e) {}
+    })();
+    </script>
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
@@ -46,7 +60,7 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <link rel="preload" as="video" href="videos/hero-mobile-v3.mp4" media="(max-width: 768px)">
-    <link rel="stylesheet" href="css/app.m15.css">
+    <link rel="stylesheet" href="css/app.m16.css">
     <style>
     @media (max-width: 768px), (max-device-width: 500px) {
         .hero, .hero-page { min-height: 0 !important; height: auto !important; }
@@ -329,6 +343,7 @@
             <nav class="nav" id="nav">
                 <a href="#equipment" class="nav__link" data-i18n="navSolutions">Рішення</a>
                 <a href="#about" class="nav__link" data-i18n="navAbout">Про компанію</a>
+                <a href="#partnership" class="nav__link" data-i18n="navPartnership">Партнерство</a>
                 <a href="#charging" class="nav__link nav__link--more" data-i18n="navCharging">Зарядки</a>
                 <a href="#calculator" class="nav__link nav__link--more" data-i18n="navCalculator">Калькулятор</a>
                 <a href="#technology" class="nav__link nav__link--more" data-i18n="navTechnology">Технологія</a>
@@ -554,6 +569,7 @@
         <nav class="nav nav--header">
             <a href="#equipment" class="nav__link" data-i18n="navSolutions">Рішення</a>
             <a href="#about" class="nav__link" data-i18n="navAbout">Про компанію</a>
+            <a href="#partnership" class="nav__link" data-i18n="navPartnership">Партнерство</a>
             <a href="#charging" class="nav__link nav__link--more" data-i18n="navCharging">Зарядки</a>
             <a href="#calculator" class="nav__link nav__link--more" data-i18n="navCalculator">Калькулятор</a>
             <a href="#technology" class="nav__link nav__link--more" data-i18n="navTechnology">Технологія</a>
@@ -582,6 +598,7 @@
     <div class="mobile-nav__links">
         <a href="#equipment" class="mobile-nav__link" data-i18n="navSolutions">Рішення</a>
         <a href="#about" class="mobile-nav__link" data-i18n="navAbout">Про компанію</a>
+        <a href="#partnership" class="mobile-nav__link" data-i18n="navPartnership">Партнерство</a>
         <a href="#charging" class="mobile-nav__link" data-i18n="navCharging">Зарядки</a>
         <a href="#calculator" class="mobile-nav__link" data-i18n="navCalculator">Калькулятор</a>
         <a href="#technology" class="mobile-nav__link" data-i18n="navTechnology">Технологія</a>
@@ -631,7 +648,7 @@
                 <div class="pain__icon">
                     <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
                 </div>
-                <h3>Нестача потужності</h3>
+                <h3 data-i18n="pain4h">Нестача потужності</h3>
                 <p data-i18n="pain4p">Обмежена потужність мережі не дозволяє масштабувати бізнес</p>
             </div>
             <div class="pain__card fade-up">
@@ -646,7 +663,7 @@
                     <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
                 </div>
                 <h3 data-i18n="pain6h">Простої виробництва</h3>
-                <p>Кожна година простою — прямі фінансові збитки та зрив контрактів</p>
+                <p data-i18n="pain6p">Кожна година простою — прямі фінансові збитки та зрив контрактів</p>
             </div>
         </div>
     </div>
@@ -658,21 +675,21 @@
         <div class="solution__inner">
             <div class="solution__text fade-up">
                 <h2 class="section__title section__title--left" data-i18n="solutionTitle">Energy Storage System —<br>рішення для бізнесу</h2>
-                <p class="solution__desc">
+                <p class="solution__desc" data-i18n="solutionDesc">
                     Система накопичує дешеву електроенергію та використовує її у години пікового навантаження — це суттєво знижує витрати.
                 </p>
                 <ul class="solution__list">
                     <li>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                        Резервне живлення
+                        <span data-i18n="solutionLi1">Резервне живлення</span>
                     </li>
                     <li>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                        Стабільність роботи підприємства
+                        <span data-i18n="solutionLi2">Стабільність роботи підприємства</span>
                     </li>
                     <li>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                        Оптимізація споживання електроенергії
+                        <span data-i18n="solutionLi3">Оптимізація споживання електроенергії</span>
                     </li>
                 </ul>
             </div>
@@ -775,35 +792,35 @@
                             <input type="radio" name="task" value="arbitrage">
                             <span class="calc__option-box">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
-                                Арбітраж РДН
+                                <span data-i18n="calcOpt1">Арбітраж РДН</span>
                             </span>
                         </label>
                         <label class="calc__option">
                             <input type="radio" name="task" value="trading">
                             <span class="calc__option-box">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a4 4 0 00-8 0v2"/></svg>
-                                Трейдинг
+                                <span data-i18n="calcOpt2">Трейдинг</span>
                             </span>
                         </label>
                         <label class="calc__option">
                             <input type="radio" name="task" value="own">
                             <span class="calc__option-box">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
-                                Власні потреби
+                                <span data-i18n="calcOpt3">Власні потреби</span>
                             </span>
                         </label>
                         <label class="calc__option">
                             <input type="radio" name="task" value="ups">
                             <span class="calc__option-box">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-                                Резервне живлення
+                                <span data-i18n="calcOpt4">Резервне живлення</span>
                             </span>
                         </label>
                         <label class="calc__option">
                             <input type="radio" name="task" value="solar">
                             <span class="calc__option-box">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/></svg>
-                                З генерацією
+                                <span data-i18n="calcOpt5">З генерацією</span>
                             </span>
                         </label>
                     </div>
@@ -816,7 +833,7 @@
                     <div class="calc__slider-block">
                         <div class="calc__slider-header">
                             <span class="calc__power-value" id="powerValue">75 кВт</span>
-                            <span class="calc__system-cost">Вартість системи: <strong id="systemCost">$30 000</strong></span>
+                            <span class="calc__system-cost"><span data-i18n="calcSysCost">Вартість системи:</span> <strong id="systemCost">$30 000</strong></span>
                         </div>
                         <div class="calc__slider-wrap">
                             <input type="range" id="powerSlider" class="calc__slider" min="3" max="3000" value="75" step="1">
@@ -837,18 +854,18 @@
 
                 <!-- Step 3 -->
                 <div class="calc__panel" id="calcStep3">
-                    <h3>Результат розрахунку</h3>
+                    <h3 data-i18n="calcResultTitle">Результат розрахунку</h3>
                     <div class="calc__results">
                         <div class="calc__result">
-                            <span class="calc__result-label">Економія на місяць</span>
+                            <span class="calc__result-label" data-i18n="calcR1">Економія на місяць</span>
                             <span class="calc__result-value" id="resultSaving">—</span>
                         </div>
                         <div class="calc__result">
-                            <span class="calc__result-label">Строк окупності</span>
+                            <span class="calc__result-label" data-i18n="calcR2">Строк окупності</span>
                             <span class="calc__result-value" id="resultPayback">—</span>
                         </div>
                         <div class="calc__result">
-                            <span class="calc__result-label">ROI за 10 років</span>
+                            <span class="calc__result-label" data-i18n="calcR3">ROI за 10 років</span>
                             <span class="calc__result-value" id="resultROI">—</span>
                         </div>
                     </div>
@@ -929,13 +946,13 @@
             </div>
             <div class="advantage fade-up">
                 <div class="advantage__num">04</div>
-                <h3>On-Grid / Off-Grid</h3>
-                <p>Повна автономність або робота паралельно з мережею</p>
+                <h3 data-i18n="adv4h">On-Grid / Off-Grid</h3>
+                <p data-i18n="adv4p">Повна автономність або робота паралельно з мережею</p>
             </div>
             <div class="advantage fade-up">
                 <div class="advantage__num">05</div>
-                <h3>Масштабованість</h3>
-                <p>Можливість додавання нових модулів при зростанні потреб</p>
+                <h3 data-i18n="adv5h">Масштабованість</h3>
+                <p data-i18n="adv5p">Можливість додавання нових модулів при зростанні потреб</p>
             </div>
         </div>
     </div>
@@ -1495,7 +1512,7 @@
         <div class="chat-widget__header">
             <div class="chat-widget__status">
                 <span class="chat-widget__dot"></span>
-                AI Енергетичний консультант
+                <span data-i18n="chatStatus">AI Енергетичний консультант</span>
             </div>
         </div>
         <div class="chat-widget__messages" id="chatMessages">
@@ -1708,6 +1725,7 @@
         <div class="footer__nav">
             <a href="#equipment" data-i18n="navSolutions">Рішення</a>
             <a href="#about" data-i18n="navAbout">Про компанію</a>
+            <a href="#partnership" data-i18n="navPartnership">Партнерство</a>
             <a href="#charging" data-i18n="navCharging">Зарядки</a>
             <a href="#calculator" data-i18n="navCalculator">Калькулятор</a>
             <a href="#technology" data-i18n="navTechnology">Технологія</a>
@@ -1729,6 +1747,6 @@
 </footer>
 
 <script src="js/equipment-data.js"></script>
-<script src="js/app.m15.js"></script>
+<script src="js/app.m16.js"></script>
 </body>
 </html>
