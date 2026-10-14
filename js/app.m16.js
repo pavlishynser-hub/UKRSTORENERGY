@@ -606,11 +606,15 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         function homeInverter() {
-            return resInverters.find((item) => item.kw === selection.home.inv) || resInverters[1];
+            return resInverters.find((item) => item.kw === selection.home.inv)
+                || resInverters.find((item) => item.kw === residential.defaultInv)
+                || resInverters[0];
         }
 
         function homeBattery() {
-            return resBatteries.find((item) => item.kwh === selection.home.bat) || resBatteries[1];
+            return resBatteries.find((item) => item.kwh === selection.home.bat)
+                || resBatteries.find((item) => item.kwh === residential.defaultBat)
+                || resBatteries[0];
         }
 
         function renderOptionButtons() {

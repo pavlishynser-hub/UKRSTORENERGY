@@ -22,11 +22,14 @@ window.UKRSTOR_EQUIPMENT = {
         }
     },
     residentialInverters: [
+        { kw: 5, model: 'E5KT' },
+        { kw: 6, model: 'E6KT' },
         { kw: 8, model: 'E8KT' },
         { kw: 10, model: 'E10KT' },
         { kw: 12, model: 'E12KT' }
     ],
     residentialBatteries: [
+        { kwh: 5.12, modules: 1 },
         { kwh: 10.2, modules: 2 },
         { kwh: 20.4, modules: 4 },
         { kwh: 30.6, modules: 6 },
@@ -44,8 +47,8 @@ window.UKRSTOR_EQUIPMENT = {
             battery: 'images/kstar-blue-pack-5-1.webp'
         },
         imageAlt: {
-            uk: 'KSTAR BluE — гібридний інвертор E8KT / E10KT / E12KT',
-            en: 'KSTAR BluE — hybrid inverter E8KT / E10KT / E12KT'
+            uk: 'KSTAR BluE — гібридний інвертор E5KT / E6KT / E8KT / E10KT / E12KT',
+            en: 'KSTAR BluE — hybrid inverter E5KT / E6KT / E8KT / E10KT / E12KT'
         },
         batteryAlt: {
             uk: 'KSTAR BluE-PACK5.1 — модуль LiFePO₄ 5.12 kWh',
